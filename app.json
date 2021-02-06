@@ -1,4 +1,6 @@
 {
+  "name": "my-project",
+  "displayName": "my-project",
   "expo": {
     "name": "my-project",
     "slug": "my-project",
@@ -17,16 +19,41 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.kasun.nplayer",
+      "buildNumber": "1.0.0",
+      "entitlements": {
+        "com.apple.developer.networking.wifi-info": "true"
+      }
     },
     "android": {
+      "package": "com.kasun.nplayer",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "permissions":[],
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "description": "Description : Native Player",
+    "sdkVersion": "UNVERSIONED",
+    "githubUrl": "https://github.com/kasunvimarshana/RNPlayer",
+    "privacy": "public",
+    "platforms": ["android", "ios", "web"],
+    "loading": {
+      "icon": "./assets/icon.png",
+      "backgroundColor": "#000000",
+      "hideExponentText": true,
+      "splash": {
+        "backgroundColor": "#000000"
+      }
+    },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#000000"
     }
   }
 }

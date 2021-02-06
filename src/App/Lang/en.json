@@ -1,0 +1,8 @@
+{
+    "common": {
+        "lists": "Lists"
+    },
+    "DatePickerAndroid": {
+        "dueDate": "{{date, DD MMM YYYY}}"
+    }
+}
