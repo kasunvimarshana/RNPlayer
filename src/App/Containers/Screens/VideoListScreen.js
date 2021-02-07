@@ -1,20 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, StatusBar } from 'react-native';
 import { connect } from 'react-redux';
+import {Container, Header, Content, Footer, Title} from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
 class VideoListScreen extends Component {
 
-    constructor() {
-        super();
+    state = {};
+
+    constructor( props ) {
+        super( props );
+        this.state = {};
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                isLoading: false
+            }
+        });
     }
 
     render() {
         return(
+            /*
             <SafeAreaView style={styles.container}>
-                <Text>VideoListScreen</Text>
+                <Text>Title</Text>
             </SafeAreaView>
+            */
+            <Container>
+                <Header>
+                    <Title>Header</Title>
+                </Header>
+
+                <Content>
+                    // Your main content goes here
+                </Content>
+
+                <Footer>
+                    <Title>Footer</Title>
+                </Footer>
+            </Container>
         );
     }
 
@@ -23,6 +48,7 @@ class VideoListScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight || 0,
   },
 });
 
@@ -30,7 +56,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     // Redux Store --> Component
     return {
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        videoList: state.video.videoList
     };
 };
 

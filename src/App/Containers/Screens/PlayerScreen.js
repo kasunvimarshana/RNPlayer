@@ -1,19 +1,44 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
 import { Video } from 'expo-av';
 import VideoPlayer from 'expo-video-player';
 import { connect } from 'react-redux';
+import {Container, Header, Content, Footer, Title} from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
 class PlayerScreen extends Component {
 
-    constructor() {
-        super();
+    state = {};
+
+    constructor( props ) {
+        super( props );
+        this.state = {};
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                isLoading: false
+            }
+        });
     }
 
+    //componentWillReceiveProps( newProps ){}
+
+    //componentDidMount() {}
+
+    //componentWillUnmount() {}
+
+    //shouldComponentUpdate( next, prev ){ return true; }
+
+    //componentWillMount() {}
+
+    //componentWillUpdate() {}
+
+    //componentDidCatch(error, info) {}
+
     render() {
-        const { videoURI } = this.props.route.params;
+        //const { videoURI } = this.props.route.params;
+        const { uri } = this.props.selectedVideo;
 
         return (
             <SafeAreaView style={styles.container}>
@@ -22,7 +47,7 @@ class PlayerScreen extends Component {
                         shouldPlay: true,
                         resizeMode: Video.RESIZE_MODE_CONTAIN,
                         source: {
-                            uri: { videoURI },
+                            uri: { uri },
                         }
                     }}
                     inFullscreen={true}
@@ -42,6 +67,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ecf0f1',
+        marginTop: StatusBar.currentHeight || 0,
     }
 });
 
@@ -49,7 +75,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     // Redux Store --> Component
     return {
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        selectedVideo: state.video.selectedVideo
     };
 };
 
