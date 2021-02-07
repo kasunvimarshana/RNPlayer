@@ -4,15 +4,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './src/App/Navigators/AppNavigator';
 import configureStore from './src/App/Store/Store/Store';
+import { Provider } from 'react-redux';
 
 export default function App() {
   const store = configureStore();
   return (
-    <StoreProvider store={store}>
+    <Provider store={store}>
         <PaperProvider>
             <AppNavigator />
         </PaperProvider>
-    </StoreProvider>
+    </Provider>
   );
 }
 
