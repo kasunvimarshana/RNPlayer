@@ -49,6 +49,7 @@
     "notification": {
       "icon": "./assets/icon.png",
       "color": "#000000"
-    }
+    },
+    "sdkVersion": "40.0.0"
   }
 }

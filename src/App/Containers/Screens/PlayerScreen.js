@@ -3,7 +3,6 @@ import { StyleSheet, SafeAreaView } from 'react-native';
 import { Video } from 'expo-av';
 import VideoPlayer from 'expo-video-player';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
