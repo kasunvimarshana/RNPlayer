@@ -3,9 +3,10 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import AppNavigator from './src/App/Navigators/AppNavigator';
-import store from './src/App/Store/Store/Store';
+import configureStore from './src/App/Store/Store/Store';
 
 export default function App() {
+  const store = configureStore();
   return (
     <StoreProvider store={store}>
         <PaperProvider>
