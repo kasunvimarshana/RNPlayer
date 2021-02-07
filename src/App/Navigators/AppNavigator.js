@@ -34,31 +34,19 @@ function AppNavigator() {
                 <Drawer.Screen 
                     name="PlayerScreen" 
                     component={PlayerScreen} 
-                    options={{}}
-                    initialParams={{}}
-                />
-                <Drawer.Screen 
-                    name="HomeScreen" 
-                    component={HomeScreen} 
-                    options={{}}
+                    options={{ drawerLabel: 'Player' }}
                     initialParams={{}}
                 />
                 <Drawer.Screen 
                     name="VideoListScreen" 
                     component={VideoListScreen} 
-                    options={{}}
+                    options={{ drawerLabel: 'Video List' }}
                     initialParams={{}}
                 />
                 <Drawer.Screen 
                     name="AddVideoScreen" 
                     component={AddVideoScreen} 
-                    options={{}}
-                    initialParams={{}}
-                />
-                <Drawer.Screen 
-                    name="VideoScreen" 
-                    component={VideoScreen} 
-                    options={{}}
+                    options={{ drawerLabel: 'Add to List' }}
                     initialParams={{}}
                 />
             </Drawer.Navigator>
