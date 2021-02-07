@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 

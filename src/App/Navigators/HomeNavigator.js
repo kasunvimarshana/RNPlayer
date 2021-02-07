@@ -13,7 +13,10 @@ const Stack = createStackNavigator();
 function HomeNavigator() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator 
+                headerMode='none'
+                screenOptions={{}}
+            >
                 <Stack.Screen 
                     name="PlayerScreen" 
                     component={PlayerScreen} 
