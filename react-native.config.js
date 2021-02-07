@@ -1,5 +1,5 @@
 module.exports = {
-    assets: ['./src/Assets/fonts'],
+    assets: ['./src/App/Assets'],
     dependencies: {
         'react-native-code-push': {
             platforms: {
