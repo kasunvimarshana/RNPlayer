@@ -33,7 +33,6 @@ class HomeScreen extends Component {
                 </Header>
 
                 <Content>
-                    // Your main content goes here
                 </Content>
 
                 <Footer>
