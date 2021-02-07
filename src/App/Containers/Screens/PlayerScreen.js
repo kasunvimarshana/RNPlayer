@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, SafeAreaView, StatusBar } from 'react-native';
+import { 
+    StyleSheet, 
+    StatusBar 
+} from 'react-native';
 import { Video } from 'expo-av';
 import VideoPlayer from 'expo-video-player';
 import { connect } from 'react-redux';
-import {Container, Header, Content, Footer, Title} from 'native-base';
+import {
+    Container, 
+    Content
+} from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
@@ -41,21 +47,23 @@ class PlayerScreen extends Component {
         const { uri } = this.props.selectedVideo;
 
         return (
-            <SafeAreaView style={styles.container}>
-                <VideoPlayer
-                    videoProps={{
-                        shouldPlay: true,
-                        resizeMode: Video.RESIZE_MODE_CONTAIN,
-                        source: {
-                            uri: { uri },
-                        }
-                    }}
-                    inFullscreen={true}
-                    showControlsOnLoad={true}
-                    showFullscreenButton={false}
-                    videoBackground='transparent'
-                />
-            </SafeAreaView>
+            <Container>
+                <Content>
+                    <VideoPlayer
+                        videoProps={{
+                            shouldPlay: true,
+                            resizeMode: Video.RESIZE_MODE_CONTAIN,
+                            source: {
+                                uri: { uri },
+                            }
+                        }}
+                        inFullscreen={true}
+                        showControlsOnLoad={true}
+                        showFullscreenButton={false}
+                        videoBackground='transparent'
+                    />
+                </Content>
+            </Container>
         );
     }
 

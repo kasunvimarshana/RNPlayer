@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, SafeAreaView, StatusBar } from 'react-native';
+import { 
+    StyleSheet, 
+    StatusBar 
+} from 'react-native';
 import { connect } from 'react-redux';
-import {Container, Header, Content, Footer, Title} from 'native-base';
+import {
+    Container, 
+    Header, 
+    Content, 
+    Title
+} from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
@@ -29,15 +37,11 @@ class AddVideoScreen extends Component {
             */
             <Container>
                 <Header>
-                    <Title>Header</Title>
+                    <Title> Add New Video </Title>
                 </Header>
 
                 <Content>
                 </Content>
-
-                <Footer>
-                    <Title>Footer</Title>
-                </Footer>
             </Container>
         );
     }

@@ -8,6 +8,7 @@ import HomeScreen from '../Containers/Screens/HomeScreen';
 import VideoListScreen from '../Containers/Screens/VideoListScreen';
 import AddVideoScreen from '../Containers/Screens/AddVideoScreen';
 import VideoScreen from '../Containers/Screens/VideoScreen';
+import MyDrawerComponent from '../Components/MyDrawerComponent';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,6 +31,7 @@ function AppNavigator() {
                 overlayColor='transparent'
                 initialRouteParams={{}}
                 navigationOptions={{}}
+                drawerContent={props => <MyDrawerComponent {...props} />}
             >
                 <Drawer.Screen 
                     name="PlayerScreen" 
