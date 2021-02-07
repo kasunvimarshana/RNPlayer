@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
+import { Video } from 'expo-av';
+import VideoPlayer from 'expo-video-player';
 
-import { Video } from 'expo-av'
-import VideoPlayer from 'expo-video-player'
+import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
 
 class PlayerScreen extends Component {
 
@@ -43,4 +44,23 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PlayerScreen;
+// Map State To Props (Redux Store Passes State To Component)
+const mapStateToProps = (state) => {
+    // Redux Store --> Component
+    return {
+        isLoading: state.ui.isLoading
+    };
+};
+
+// Map Dispatch To Props (Dispatch Actions To Reducers. Reducers Then Modify The Data And Assign It To Your Props)
+const mapDispatchToProps = (dispatch) => {
+    // Action
+    return {
+        // startLoading
+        ui_StartLoading: ( payload = {} ) => dispatch(startLoading( payload )),
+        // stopLoading
+        ui_StopLoading: ( payload = {} ) => dispatch(stopLoading( payload ))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerScreen);

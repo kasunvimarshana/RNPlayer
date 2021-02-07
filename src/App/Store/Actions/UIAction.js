@@ -3,14 +3,16 @@ import {
     UI_STOP_LOADING 
 } from '../Actions/ActionType';
 
-export const startLoading = () => {
+export const startLoading = ( payload = {} ) => {
     return {
-        type: UI_START_LOADING
+        type: UI_START_LOADING,
+        payload: payload
     }
 };
 
-export const stopLoading = () => {
+export const stopLoading = ( payload = {} ) => {
     return {
-        type: UI_STOP_LOADING
+        type: UI_STOP_LOADING,
+        payload: payload
     }
 };
