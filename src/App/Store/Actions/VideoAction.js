@@ -3,6 +3,8 @@ import {
     SET_VIDEO_LIST 
 } from '../Actions/ActionType';
 
+const DATABASE_URI = "https://calcium-firefly-303215-default-rtdb.firebaseio.com";
+
 export const getAllVideos = () => {
     return (dispatch, getState) => {
         videoList = null;

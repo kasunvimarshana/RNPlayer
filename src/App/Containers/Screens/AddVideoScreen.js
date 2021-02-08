@@ -38,6 +38,10 @@ class AddVideoScreen extends Component {
                 isLoading: false
             }
         });
+        this.inputVideoURI = React.createRef();
+        this.inputTitle = React.createRef();
+        this.inputDescription = React.createRef();
+        this.inputSave = React.createRef();
     }
 
     render() {
@@ -59,18 +63,49 @@ class AddVideoScreen extends Component {
                                 <Form>
                                     <Item floatingLabel rounded>
                                         <Label> Video URL </Label>
-                                        <Input placeholder="Video URL" />
+                                        <Input 
+                                            placeholder="Video URL" 
+                                            ref={(ref) => this.inputVideoURI = ref}
+                                            value = {}
+                                            onChangeText={}
+                                            onBlur={}
+                                            onFocus={}
+                                            style={}
+                                            onSubmitEditing={}
+                                            onEndEditing={}
+                                        />
                                     </Item>
                                     <Item floatingLabel rounded>
                                         <Label> Title </Label>
-                                        <Input placeholder="Title" />
+                                        <Input 
+                                            placeholder="Title"
+                                            ref={(ref) => this.inputTitle = ref}
+                                            value = {}
+                                            onChangeText={}
+                                            onBlur={}
+                                            onFocus={}
+                                        />
                                     </Item>
                                     <Item floatingLabel rounded>
                                         <Label> Description </Label>
-                                        <Textarea rowSpan={5} bordered placeholder="Description" />
+                                        <Textarea 
+                                            rowSpan={5} 
+                                            bordered 
+                                            placeholder="Description" 
+                                            ref={(ref) => this.inputDescription = ref}
+                                            value = {}
+                                            onChangeText={}
+                                            onBlur={}
+                                            onFocus={}
+                                        />
                                     </Item>
                                     <Item floatingLabel rounded>
-                                        <Button block rounded iconLeft>
+                                        <Button 
+                                            block 
+                                            rounded 
+                                            iconLeft
+                                            ref={(ref) => this.inputSave = ref}
+                                        >
                                             <Icon name='save' />
                                             <Text> Save </Text>
                                         </Button>
@@ -85,6 +120,23 @@ class AddVideoScreen extends Component {
     }
 
 }
+
+/*
+import React from 'react';
+import { TextInput } from 'react-native';
+
+const UselessTextInput = () => {
+  const [value, onChangeText] = React.useState('Useless Placeholder');
+
+  return (
+    <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={text => onChangeText(text)}
+      value={value}
+    />
+  );
+}
+*/
 
 const styles = StyleSheet.create({
   container: {

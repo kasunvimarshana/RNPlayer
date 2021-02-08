@@ -47,7 +47,7 @@ class VideoListScreen extends Component {
             */
             <Container>
                 <Header>
-                    <Title> Video List </Title>
+                    <Title> Videos </Title>
                 </Header>
 
                 <Content>
@@ -70,6 +70,15 @@ class VideoListScreen extends Component {
                                         <Right>
                                             <Icon name="arrow-forward" />
                                         </Right>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Text> Video 3 </Text>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Text> Video 4 </Text>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Text> Video 5 </Text>
                                     </ListItem>
                                 </List>
                             </Body>
