@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useWindowDimensions } from 'react-native';
 import { createDrawerNavigator, useIsDrawerOpen  } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 import PlayerScreen from '../Containers/Screens/PlayerScreen';
 import HomeScreen from '../Containers/Screens/HomeScreen';
@@ -31,24 +32,39 @@ function AppNavigator() {
                 overlayColor='transparent'
                 initialRouteParams={{}}
                 navigationOptions={{}}
-                //drawerContent={props => <MyDrawerComponent {...props} />}
+                drawerContent={props => <MyDrawerComponent {...props} />}
             >
                 <Drawer.Screen 
                     name="PlayerScreen" 
                     component={PlayerScreen} 
-                    options={{ drawerLabel: 'Player' }}
+                    options={{ 
+                        drawerLabel: 'Player',
+                        drawerIcon: ({ focused, color, size }) => (
+                            <Ionicons name="play-circle-outline" size={size} color={color} />
+                        )
+                     }}
                     initialParams={{}}
                 />
                 <Drawer.Screen 
                     name="VideoListScreen" 
                     component={VideoListScreen} 
-                    options={{ drawerLabel: 'Video List' }}
+                    options={{ 
+                        drawerLabel: 'Video List', 
+                        drawerIcon: ({ focused, color, size }) => (
+                            <Ionicons name="list-circle-outline" size={size} color={color} />
+                        )
+                    }}
                     initialParams={{}}
                 />
                 <Drawer.Screen 
                     name="AddVideoScreen" 
                     component={AddVideoScreen} 
-                    options={{ drawerLabel: 'Add to List' }}
+                    options={{ 
+                        drawerLabel: 'Add to List',
+                        drawerIcon: ({ focused, color, size }) => (
+                            <Ionicons name="add-circle-outline" size={size} color={color} />
+                        ) 
+                    }}
                     initialParams={{}}
                 />
             </Drawer.Navigator>

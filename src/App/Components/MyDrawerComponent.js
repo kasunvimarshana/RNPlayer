@@ -1,32 +1,36 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { 
+    View,
+    SafeAreaView,
+    ScrollView,
     StyleSheet, 
+    ImageBackground,
+    Image,
+    TouchableOpacity,
     StatusBar 
 } from 'react-native';
-import {
-    Container, 
-    Header, 
-    Content, 
-    Title,
-    Text,
-    View,
-    Card,
-    CardItem,
-    Body,
-    Image
-} from 'native-base';
-import {
-    Drawer
-} from 'react-native-paper';
 
+import { 
+    Colors,
+    Text,
+    Card, 
+    Title, 
+    Paragraph,
+    Headline,
+    TextInput,
+    List,
+    Button,
+    Drawer,
+    ActivityIndicator
+} from 'react-native-paper';
 import { NavigationContainer } from '@react-navigation/native';
 import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItemList,
-  DrawerItem,
+    createDrawerNavigator,
+    DrawerContentScrollView,
+    DrawerItemList,
+    DrawerItem
 } from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 const logoImage = require('../Assets/logo-removebg.png');
 
@@ -38,42 +42,83 @@ export default function MyDrawerComponent( props ){
     );
 
     return (
-        <Container>
-            <Content>
-                <Card>
-                    <CardItem >
-                        <Body>
-                            <Image 
-                                source={ logoImage } 
-                                style={{height: 200, width: 200, flex: 1}}
-                            />
-                        </Body>
-                    </CardItem>
-                    <CardItem>
-                        <Body>
-                            <DrawerContentScrollView {...props}>
-                                <DrawerItemList state={newState} {...rest} />
+        <SafeAreaView style={styles.container}>
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.contentContainer}>
+                        <Image style={styles.coverImage} source={logoImage} />
+                        <DrawerContentScrollView {...props}>
+                            <DrawerItemList state={newState} {...rest} />
+                        </DrawerContentScrollView>
 
-                                <Drawer.Section title="Player">
-                                    <DrawerItem 
-                                        icon={({color, size}) => (
-                                            <Icon 
-                                                name="home-outline" 
-                                                color={color}
-                                                size={size}
-                                            />
-                                        )}
-                                        label="Player"
-                                        onPress={() => {
-                                            props.navigation.navigate('PlayerScreen')
-                                        }}
-                                    />
-                                </Drawer.Section>
-                            </DrawerContentScrollView>
-                        </Body>
-                    </CardItem>
-                </Card>
-            </Content>
-        </Container> 
+                        <Drawer.Section>
+                            <DrawerItem 
+                                icon={({ focused, color, size }) => (
+                                    <Ionicons name="play-circle-outline" size={size} color={color} />
+                                )}
+                                label="Player"
+                                onPress={() => {
+                                    props.navigation.navigate('PlayerScreen')
+                                }}
+                            />
+                        </Drawer.Section>
+                    </View>
+                </ScrollView>
+        </SafeAreaView>
     );
 }
+/*
+<SafeAreaView style={styles.container}>
+    <ScrollView style={styles.scrollView}>
+        <View style={styles.contentContainer}>
+            <DrawerContentScrollView {...props}>
+                <DrawerItemList state={newState} {...rest} />
+
+                <Drawer.Section title="Player">
+                    <DrawerItem 
+                        icon={({color, size}) => (
+                            <Icon 
+                                name="home-outline" 
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                        label="Player"
+                        onPress={() => {
+                            props.navigation.navigate('PlayerScreen')
+                        }}
+                    />
+                </Drawer.Section>
+            </DrawerContentScrollView>
+        </View>
+    </ScrollView>
+</SafeAreaView>
+*/
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight || 0,
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        backgroundColor: Colors.red300
+    },
+    scrollView: {
+        //marginHorizontal: 20,
+    },
+    contentContainer: {
+        flex: 1,
+        flexDirection: "column",
+    },
+    coverImage: {
+        backgroundColor: 'transparent',
+        backfaceVisibility: 'hidden',
+        resizeMode: 'stretch',
+        width: '100%',
+        height: 200
+    },
+    imageBackground: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center'
+    },
+});

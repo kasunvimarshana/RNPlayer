@@ -1,17 +1,33 @@
 import React, { Component } from 'react';
 import { 
+    View,
+    SafeAreaView,
+    ScrollView,
     StyleSheet, 
+    ImageBackground,
+    Image,
     StatusBar 
 } from 'react-native';
+import { connect } from 'react-redux';
+import { 
+    Colors,
+    Text,
+    Card, 
+    Title, 
+    Paragraph,
+    Headline,
+    TextInput,
+    List,
+    Button,
+    ActivityIndicator
+} from 'react-native-paper';
+import { FontAwesome } from '@expo/vector-icons';
 import { Video } from 'expo-av';
 import VideoPlayer from 'expo-video-player';
-import { connect } from 'react-redux';
-import {
-    Container, 
-    Content
-} from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
+
+const logoImage = require('../../Assets/logo-removebg.png');
 
 class PlayerScreen extends Component {
 
@@ -20,50 +36,38 @@ class PlayerScreen extends Component {
     constructor( props ) {
         super( props );
         this.state = {};
-        this.setState((prevState) => {
+        /*this.setState((prevState) => {
             return {
                 ...prevState,
                 isLoading: false
             }
-        });
+        });*/
     }
-
-    //componentWillReceiveProps( newProps ){}
-
-    //componentDidMount() {}
-
-    //componentWillUnmount() {}
-
-    //shouldComponentUpdate( next, prev ){ return true; }
-
-    //componentWillMount() {}
-
-    //componentWillUpdate() {}
-
-    //componentDidCatch(error, info) {}
 
     render() {
         //const { videoURI } = this.props.route.params;
         const { uri } = this.props.selectedVideo;
 
         return (
-            <Container>
-                <Content>
-                    <VideoPlayer
-                        videoProps={{
-                            shouldPlay: true,
-                            resizeMode: Video.RESIZE_MODE_CONTAIN,
-                            source: {
-                                uri: { uri },
-                            }
-                        }}
-                        inFullscreen={true}
-                        showControlsOnLoad={true}
-                        showFullscreenButton={false}
-                        videoBackground='transparent'
-                    />
-                </Content>
-            </Container>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.scrollView}>
+                    <View style={styles.contentContainer}>
+                        <VideoPlayer
+                            videoProps={{
+                                shouldPlay: true,
+                                resizeMode: Video.RESIZE_MODE_CONTAIN,
+                                source: {
+                                    uri: { uri },
+                                }
+                            }}
+                            inFullscreen={true}
+                            showControlsOnLoad={true}
+                            showFullscreenButton={false}
+                            videoBackground='transparent'
+                        />
+                    </View>
+                </View>
+            </SafeAreaView>
         );
     }
 
@@ -72,11 +76,23 @@ class PlayerScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
+        //paddingTop: StatusBar.currentHeight || 0,
         justifyContent: 'center',
-        backgroundColor: '#ecf0f1',
-        marginTop: StatusBar.currentHeight || 0,
-    }
+        alignItems: 'stretch',
+        backgroundColor: Colors.red300
+    },
+    scrollView: {
+        //marginHorizontal: 20,
+    },
+    contentContainer: {
+        //flex: 1,
+        //flexDirection: "column",
+    },
+    imageBackground: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center'
+    },
 });
 
 // Map State To Props (Redux Store Passes State To Component)

@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import { 
+    View,
+    SafeAreaView,
+    ScrollView,
     StyleSheet, 
+    ImageBackground,
+    Image,
     StatusBar 
 } from 'react-native';
 import { connect } from 'react-redux';
-import {
-    Container, 
-    Header, 
-    Content, 
-    Title,
-    Card,
-    CardItem,
-    Body,
-    Form,
-    Item,
-    Label,
-    Input,
-    Textarea,
-    Button,
+import { 
+    Colors,
     Text,
-    Icon,
-    Spinner
-} from 'native-base';
+    Card, 
+    Title, 
+    Paragraph,
+    Headline,
+    TextInput,
+    List,
+    Button,
+    ActivityIndicator
+ } from 'react-native-paper';
+ import { FontAwesome } from '@expo/vector-icons';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
+
+const logoImage = require('../../Assets/logo-removebg.png');
 
 class AddVideoScreen extends Component {
 
@@ -32,127 +34,136 @@ class AddVideoScreen extends Component {
     constructor( props ) {
         super( props );
         this.state = {};
-        this.setState((prevState) => {
+        /*this.setState((prevState) => {
             return {
                 ...prevState,
                 isLoading: false
             }
-        });
+        });*/
         this.inputVideoURI = React.createRef();
         this.inputTitle = React.createRef();
         this.inputDescription = React.createRef();
         this.inputSave = React.createRef();
-
-        const [videoURIValue, videoURIOnChange] = React.useState('Default Placeholder');
-        const [titleValue, titleOnChange] = React.useState('Default Placeholder');
-        const [descriptionValue, descriptionOnChange] = React.useState('Default Placeholder');
     }
+
+    videoURIOnChange = ( value ) => {}
+    titleOnChange = ( value ) => {}
+    descriptionOnChange = ( value ) => {}
 
     render() {
         return(
-            /*
             <SafeAreaView style={styles.container}>
-                <Text>Title</Text>
-            </SafeAreaView>
-            */
-            <Container>
-                <Header>
-                    <Title> Add New Video </Title>
-                </Header>
-
-                <Content>
-                    <Card>
-                        <CardItem>
-                            <Body>
-                                <Form>
-                                    <Item floatingLabel rounded>
-                                        <Label> Video URL </Label>
-                                        <Input 
-                                            placeholder="Video URL" 
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.headingContainer}>
+                            <Headline style={styles.heding}> Add New Video </Headline>
+                        </View>
+                        <View style={styles.form}>
+                            <View style={styles.card}>
+                                <Image style={styles.coverImage} source={logoImage} />
+                                <View style={styles.cardContent}>
+                                    <View style={styles.inputGroup}>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Video URL"
                                             ref={(ref) => this.inputVideoURI = ref}
-                                            value = {videoURIValue}
-                                            onChangeText={videoURIOnChange}
-                                            //onBlur={}
-                                            //onFocus={}
-                                            //style={}
-                                            //onSubmitEditing={}
-                                            //onEndEditing={}
+                                            value = {this.state.videoURIValue}
+                                            defaultValue={this.state.videoURIValue}
+                                            onChangeText={this.videoURIOnChange}
                                         />
-                                    </Item>
-                                    <Item floatingLabel rounded>
-                                        <Label> Title </Label>
-                                        <Input 
+                                    </View>
+                                    <View style={styles.inputGroup}>
+                                        <TextInput
+                                            style={styles.input}
                                             placeholder="Title"
                                             ref={(ref) => this.inputTitle = ref}
-                                            value = {titleValue}
-                                            onChangeText={titleOnChange}
-                                            //onBlur={}
-                                            //onFocus={}
-                                            //style={}
-                                            //onSubmitEditing={}
-                                            //onEndEditing={}
+                                            value = {this.state.titleValue}
+                                            defaultValue={this.state.titleValue}
+                                            onChangeText={this.titleOnChange}
                                         />
-                                    </Item>
-                                    <Item floatingLabel rounded>
-                                        <Label> Description </Label>
-                                        <Textarea 
-                                            rowSpan={5} 
-                                            bordered 
-                                            placeholder="Description" 
+                                    </View>
+                                    <View style={styles.inputGroup}>
+                                        <TextInput
+                                            style={styles.input}
+                                            placeholder="Description"
                                             ref={(ref) => this.inputDescription = ref}
-                                            value = {descriptionValue}
-                                            onChangeText={descriptionOnChange}
-                                            //onBlur={}
-                                            //onFocus={}
-                                            //style={}
-                                            //onSubmitEditing={}
-                                            //onEndEditing={}
+                                            value = {this.state.descriptionValue}
+                                            defaultValue={this.state.descriptionValue}
+                                            onChangeText={this.descriptionOnChange}
                                         />
-                                    </Item>
-                                    <Item floatingLabel rounded>
+                                    </View>
+                                    <View style={styles.inputGroup}>
                                         <Button 
-                                            block 
-                                            rounded 
-                                            iconLeft
                                             ref={(ref) => this.inputSave = ref}
+                                            icon="content-save-outline" 
+                                            mode="contained" 
+                                            onPress={() => console.log('Pressed')}
                                         >
-                                            <Icon name='save' />
-                                            <Text> Save </Text>
+                                            Save
                                         </Button>
-                                    </Item>
-                                </Form>
-                            </Body>
-                        </CardItem>
-                    </Card>
-                </Content>
-            </Container>
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         );
     }
 
 }
 
-/*
-import React from 'react';
-import { TextInput } from 'react-native';
-
-const UselessTextInput = () => {
-  const [value, onChangeText] = React.useState('Useless Placeholder');
-
-  return (
-    <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-      onChangeText={text => onChangeText(text)}
-      value={value}
-    />
-  );
-}
-*/
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
-  },
+    container: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight || 0,
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        backgroundColor: Colors.red300
+    },
+    scrollView: {
+        //marginHorizontal: 20,
+    },
+    contentContainer: {
+        flex: 1,
+        flexDirection: "column",
+    },
+    form: {
+        flex: 1,
+        alignItems: 'stretch',
+        justifyContent: 'center',
+    },
+    inputGroup: {
+        width: '100%',
+        paddingBottom: 5
+    },
+    card: {
+        flex: 1,
+        backgroundColor: 'transparent'
+    },
+    cardContent: {
+        flex: 1
+    },
+    coverImage: {
+        backgroundColor: 'transparent',
+        backfaceVisibility: 'hidden',
+        resizeMode: 'stretch',
+        width: '100%',
+        height: 200
+    },
+    imageBackground: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center'
+    },
+    headingContainer: {
+        width: '100%',
+        alignItems: 'center'
+    },
+    heding: {
+        fontWeight: 'bold',
+        color: Colors.white
+    }
 });
 
 // Map State To Props (Redux Store Passes State To Component)
