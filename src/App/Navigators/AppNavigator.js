@@ -31,7 +31,7 @@ function AppNavigator() {
                 overlayColor='transparent'
                 initialRouteParams={{}}
                 navigationOptions={{}}
-                drawerContent={props => <MyDrawerComponent {...props} />}
+                //drawerContent={props => <MyDrawerComponent {...props} />}
             >
                 <Drawer.Screen 
                     name="PlayerScreen" 

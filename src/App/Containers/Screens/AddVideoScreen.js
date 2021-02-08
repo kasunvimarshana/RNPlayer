@@ -8,7 +8,17 @@ import {
     Container, 
     Header, 
     Content, 
-    Title
+    Title,
+    Card,
+    CardItem,
+    Body,
+    Form,
+    Item,
+    Label,
+    Input,
+    Textarea,
+    Button,
+    Text
 } from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
@@ -41,6 +51,31 @@ class AddVideoScreen extends Component {
                 </Header>
 
                 <Content>
+                    <Card>
+                        <CardItem>
+                            <Body>
+                                <Form>
+                                    <Item floatingLabel rounded>
+                                        <Label> Video URL </Label>
+                                        <Input placeholder="Video URL" />
+                                    </Item>
+                                    <Item floatingLabel rounded>
+                                        <Label> Title </Label>
+                                        <Input placeholder="Title" />
+                                    </Item>
+                                    <Item floatingLabel rounded>
+                                        <Label>Description</Label>
+                                        <Textarea rowSpan={5} bordered placeholder="Description" />
+                                    </Item>
+                                    <Item floatingLabel rounded>
+                                        <Button block rounded>
+                                            <Text> Save </Text>
+                                        </Button>
+                                    </Item>
+                                </Form>
+                            </Body>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );
