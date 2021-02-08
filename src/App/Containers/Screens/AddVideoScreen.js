@@ -42,6 +42,10 @@ class AddVideoScreen extends Component {
         this.inputTitle = React.createRef();
         this.inputDescription = React.createRef();
         this.inputSave = React.createRef();
+
+        const [videoURIValue, videoURIOnChange] = React.useState('Default Placeholder');
+        const [titleValue, titleOnChange] = React.useState('Default Placeholder');
+        const [descriptionValue, descriptionOnChange] = React.useState('Default Placeholder');
     }
 
     render() {
@@ -66,13 +70,13 @@ class AddVideoScreen extends Component {
                                         <Input 
                                             placeholder="Video URL" 
                                             ref={(ref) => this.inputVideoURI = ref}
-                                            value = {}
-                                            onChangeText={}
-                                            onBlur={}
-                                            onFocus={}
-                                            style={}
-                                            onSubmitEditing={}
-                                            onEndEditing={}
+                                            value = {videoURIValue}
+                                            onChangeText={videoURIOnChange}
+                                            //onBlur={}
+                                            //onFocus={}
+                                            //style={}
+                                            //onSubmitEditing={}
+                                            //onEndEditing={}
                                         />
                                     </Item>
                                     <Item floatingLabel rounded>
@@ -80,10 +84,13 @@ class AddVideoScreen extends Component {
                                         <Input 
                                             placeholder="Title"
                                             ref={(ref) => this.inputTitle = ref}
-                                            value = {}
-                                            onChangeText={}
-                                            onBlur={}
-                                            onFocus={}
+                                            value = {titleValue}
+                                            onChangeText={titleOnChange}
+                                            //onBlur={}
+                                            //onFocus={}
+                                            //style={}
+                                            //onSubmitEditing={}
+                                            //onEndEditing={}
                                         />
                                     </Item>
                                     <Item floatingLabel rounded>
@@ -93,10 +100,13 @@ class AddVideoScreen extends Component {
                                             bordered 
                                             placeholder="Description" 
                                             ref={(ref) => this.inputDescription = ref}
-                                            value = {}
-                                            onChangeText={}
-                                            onBlur={}
-                                            onFocus={}
+                                            value = {descriptionValue}
+                                            onChangeText={descriptionOnChange}
+                                            //onBlur={}
+                                            //onFocus={}
+                                            //style={}
+                                            //onSubmitEditing={}
+                                            //onEndEditing={}
                                         />
                                     </Item>
                                     <Item floatingLabel rounded>
