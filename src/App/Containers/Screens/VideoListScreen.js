@@ -8,7 +8,17 @@ import {
     Container, 
     Header, 
     Content, 
-    Title
+    Title,
+    Card,
+    CardItem,
+    Body,
+    List,
+    ListItem,
+    Left,
+    Text,
+    Right,
+    Icon,
+    Spinner
 } from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
@@ -41,6 +51,30 @@ class VideoListScreen extends Component {
                 </Header>
 
                 <Content>
+                    <Card>
+                        <CardItem>
+                            <Body>
+                                <List>
+                                    <ListItem>
+                                        <Left>
+                                            <Text> Video 1 </Text>
+                                        </Left>
+                                        <Right>
+                                            <Icon name="arrow-forward" />
+                                        </Right>
+                                    </ListItem>
+                                    <ListItem>
+                                        <Left>
+                                            <Text> Video 2 </Text>
+                                        </Left>
+                                        <Right>
+                                            <Icon name="arrow-forward" />
+                                        </Right>
+                                    </ListItem>
+                                </List>
+                            </Body>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );

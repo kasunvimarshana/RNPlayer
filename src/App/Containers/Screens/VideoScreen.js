@@ -8,7 +8,16 @@ import {
     Container, 
     Header, 
     Content, 
-    Title
+    Title,
+    Card,
+    CardItem,
+    Body,
+    Separator,
+    Text,
+    ListItem,
+    Button,
+    Icon,
+    Spinner
 } from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
@@ -41,6 +50,45 @@ class VideoScreen extends Component {
                 </Header>
 
                 <Content>
+                    <Card>
+                        <CardItem>
+                            <Body>
+                                <Separator bordered>
+                                    <Text> Video URL </Text>
+                                </Separator>
+                                <ListItem>
+                                    <Text>http://google.com</Text>
+                                </ListItem>
+                                <Separator bordered>
+                                    <Text> Title </Text>
+                                </Separator>
+                                <ListItem>
+                                    <Text>video title</Text>
+                                </ListItem>
+                                <Separator bordered>
+                                    <Text> Description </Text>
+                                </Separator>
+                                <ListItem>
+                                    <Text>video description</Text>
+                                </ListItem>
+                                <Separator bordered>
+                                    <Text> Controls </Text>
+                                </Separator>
+                                <ListItem>
+                                    <Button block rounded iconLeft>
+                                        <Icon name='play' />
+                                        <Text> Play </Text>
+                                    </Button>
+                                </ListItem>
+                                <ListItem>
+                                    <Button block rounded iconLeft>
+                                        <Icon name='trash' />
+                                        <Text> Delete </Text>
+                                    </Button>
+                                </ListItem>
+                            </Body>
+                        </CardItem>
+                    </Card>
                 </Content>
             </Container>
         );

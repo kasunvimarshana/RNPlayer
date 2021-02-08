@@ -18,7 +18,9 @@ import {
     Input,
     Textarea,
     Button,
-    Text
+    Text,
+    Icon,
+    Spinner
 } from 'native-base';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
@@ -64,11 +66,12 @@ class AddVideoScreen extends Component {
                                         <Input placeholder="Title" />
                                     </Item>
                                     <Item floatingLabel rounded>
-                                        <Label>Description</Label>
+                                        <Label> Description </Label>
                                         <Textarea rowSpan={5} bordered placeholder="Description" />
                                     </Item>
                                     <Item floatingLabel rounded>
-                                        <Button block rounded>
+                                        <Button block rounded iconLeft>
+                                            <Icon name='save' />
                                             <Text> Save </Text>
                                         </Button>
                                     </Item>
