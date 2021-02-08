@@ -30,7 +30,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const logoImage = require('../Assets/logo-removebg.png');
 
-const MyDrawerComponent = ( props ) => {
+export default function MyDrawerComponent( props ){
     const {state, ...rest} = props;
     const newState = {...state};
     newState.routes = newState.routes.filter(( item ) => 
@@ -76,6 +76,4 @@ const MyDrawerComponent = ( props ) => {
             </Content>
         </Container> 
     );
-};
-
-export default MyDrawerComponent;
+}
