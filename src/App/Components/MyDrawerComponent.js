@@ -35,11 +35,11 @@ import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icon
 const logoImage = require('../Assets/logo-removebg.png');
 
 export default function MyDrawerComponent( props ){
-    const {state, ...rest} = props;
+    /*const {state, ...rest} = props;
     const newState = {...state};
     newState.routes = newState.routes.filter(( item ) => 
         item.name !== 'PlayerScreen'
-    );
+    );*/
 
     return (
         <SafeAreaView style={styles.container}>
@@ -47,15 +47,12 @@ export default function MyDrawerComponent( props ){
                     <View style={styles.contentContainer}>
                         <Image style={styles.coverImage} source={logoImage} />
                         <DrawerContentScrollView {...props}>
-                            <DrawerItemList state={newState} {...rest} />
+                            <DrawerItemList {...props} />
                         </DrawerContentScrollView>
 
                         <Drawer.Section>
                             <DrawerItem 
-                                icon={({ focused, color, size }) => (
-                                    <Ionicons name="play-circle-outline" size={size} color={color} />
-                                )}
-                                label="Player"
+                                label='Player'
                                 onPress={() => {
                                     props.navigation.navigate('PlayerScreen')
                                 }}
@@ -66,33 +63,6 @@ export default function MyDrawerComponent( props ){
         </SafeAreaView>
     );
 }
-/*
-<SafeAreaView style={styles.container}>
-    <ScrollView style={styles.scrollView}>
-        <View style={styles.contentContainer}>
-            <DrawerContentScrollView {...props}>
-                <DrawerItemList state={newState} {...rest} />
-
-                <Drawer.Section title="Player">
-                    <DrawerItem 
-                        icon={({color, size}) => (
-                            <Icon 
-                                name="home-outline" 
-                                color={color}
-                                size={size}
-                            />
-                        )}
-                        label="Player"
-                        onPress={() => {
-                            props.navigation.navigate('PlayerScreen')
-                        }}
-                    />
-                </Drawer.Section>
-            </DrawerContentScrollView>
-        </View>
-    </ScrollView>
-</SafeAreaView>
-*/
 
 const styles = StyleSheet.create({
     container: {

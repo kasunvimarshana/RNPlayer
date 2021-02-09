@@ -22,50 +22,60 @@ function AppNavigator() {
     return (
         <NavigationContainer>
             <Drawer.Navigator 
-                initialRouteName="VideoListScreen"
-                screenOptions={{}}
-                //backBehavior={{}}
-                openByDefault={false}
+                drawerContentOptions={{
+                    itemStyle: { marginVertical: 5 }
+                }}
+                initialRouteName='VideoListScreen'
                 drawerPosition='left'
                 drawerType={isLargeScreen ? 'permanent' : 'back'}
                 drawerStyle={isLargeScreen ? null : { width: '100%' }}
                 overlayColor='transparent'
-                //initialRouteParams={{}}
-                //navigationOptions={{}}
-                drawerContent={props => <MyDrawerComponent {...props} />}
+                headerMode="none"
+                //drawerContent={props => <MyDrawerComponent {...props} />}
+                drawerContent={(props) => {
+                        const filteredProps = {
+                            ...props,
+                            state: {
+                                ...props.state,
+                                routeNames: props.state.routeNames.filter(
+                                    // To hide single option
+                                    // (routeName) => routeName !== 'HiddenPage1',
+                                    // To hide multiple options you can add & condition
+                                    (routeName) => {
+                                        routeName !== 'PlayerScreen';
+                                    }
+                                ),
+                                routes: props.state.routes.filter(
+                                    (route) =>
+                                    route.name !== 'PlayerScreen'
+                                ),
+                            },
+                        };
+                        return (
+                        <MyDrawerComponent {...filteredProps}></MyDrawerComponent>
+                        );
+                    }}
             >
                 <Drawer.Screen 
-                    name="PlayerScreen" 
-                    component={PlayerScreen} 
-                    options={{ 
-                        drawerLabel: 'Player',
-                        drawerIcon: ({ focused, color, size }) => (
-                            <Ionicons name="play-circle-outline" size={size} color={color} />
-                        )
-                     }}
-                    initialParams={{}}
-                />
-                <Drawer.Screen 
-                    name="VideoListScreen" 
+                    name='VideoListScreen' 
                     component={VideoListScreen} 
                     options={{ 
-                        drawerLabel: 'Video List', 
-                        drawerIcon: ({ focused, color, size }) => (
-                            <Ionicons name="list-circle-outline" size={size} color={color} />
-                        )
+                        drawerLabel: 'Video List'
                     }}
-                    initialParams={{}}
                 />
                 <Drawer.Screen 
-                    name="AddVideoScreen" 
+                    name='AddVideoScreen' 
                     component={AddVideoScreen} 
                     options={{ 
-                        drawerLabel: 'Add to List',
-                        drawerIcon: ({ focused, color, size }) => (
-                            <Ionicons name="add-circle-outline" size={size} color={color} />
-                        ) 
+                        drawerLabel: 'Add to List'
                     }}
-                    initialParams={{}}
+                />
+                <Drawer.Screen 
+                    name='PlayerScreen' 
+                    component={PlayerScreen} 
+                    options={{ 
+                        drawerLabel: ''
+                    }}
                 />
             </Drawer.Navigator>
         </NavigationContainer>

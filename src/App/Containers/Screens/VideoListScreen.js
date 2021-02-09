@@ -47,11 +47,32 @@ class VideoListScreen extends Component {
         });*/
         this.inputDelete = React.createRef();
         this.inputPlay = React.createRef();
+
+        this._didFocusUnsubscribe = props.navigation.addListener("didFocus", (payload) => {
+            console.log("didFocus");
+        });
+
+        this._focusUnsubscribe = props.navigation.addListener('focus', (payload) => {
+            this.getAllVideos();
+        });
     }
 
-    unsubscribe = this.props.navigation.addListener('focus', () => {
-        this.getAllVideos();
-    });
+    componentDidMount() {
+        this._didFocusUnsubscribe = this.props.navigation.addListener("didFocus", (payload) => {
+            console.log("didFocus");
+        });
+
+        this._focusUnsubscribe = this.props.navigation.addListener('focus', (payload) => {
+            this.getAllVideos();
+        });
+    }
+
+    UNSAFE_componentWillMount() {
+        //this._didFocusUnsubscribe.remove();
+        //this._focusUnsubscribe.remove();
+        //this._didFocusUnsubscribe();
+        //this._focusUnsubscribe();
+    }
 
     listItemOnSelect = ( value ) => {
         console.log("listItemOnSelect", value);
@@ -63,15 +84,13 @@ class VideoListScreen extends Component {
         });
     }
 
-    UNSAFE_componentWillMount() {}
+    //UNSAFE_componentWillMount() {}
 
-    UNSAFE_componentWillReceiveProps(nextProps) {}
+    //UNSAFE_componentWillReceiveProps(nextProps) {}
 
-    componentDidUpdate(prevProps, prevState, snapshot) {}
+    //componentDidUpdate(prevProps, prevState, snapshot) {}
 
-    shouldComponentUpdate() {
-        return true;
-    }
+    //shouldComponentUpdate() { return true; }
 
     getAllVideos = () => {
         this.props.ui_GetAllVideos();
