@@ -18,7 +18,7 @@ const initialState = {
         description: defaultVideo.description,
         editable: defaultVideo.editable
     },
-    videoList: null
+    videoList: []
 };
 
 const reducer = (state = initialState, action) => {

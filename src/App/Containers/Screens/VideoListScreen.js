@@ -25,48 +25,10 @@ import {
  import { FontAwesome } from '@expo/vector-icons';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
+import { getAllVideos } from '../../Store/Actions/VideoAction';
 import ListItem from '../../Components/ListItem';
 
 const logoImage = require('../../Assets/logo-removebg.png');
-
-const DATA = [
-    {
-        id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-        title: "First Item",
-    },
-    {
-        id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-        title: "Second Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-    {
-        id: "58694a0f-3da1-471f-bd96-145571e29d72",
-        title: "Third Item",
-    },
-];
 
 class VideoListScreen extends Component {
 
@@ -87,13 +49,32 @@ class VideoListScreen extends Component {
         this.inputPlay = React.createRef();
     }
 
+    unsubscribe = this.props.navigation.addListener('focus', () => {
+        this.getAllVideos();
+    });
+
     listItemOnSelect = ( value ) => {
+        console.log("listItemOnSelect", value);
         this.setState((prevState) => {
             return {
                 ...prevState,
                 selectedListItemId: value
             }
         });
+    }
+
+    UNSAFE_componentWillMount() {}
+
+    UNSAFE_componentWillReceiveProps(nextProps) {}
+
+    componentDidUpdate(prevProps, prevState, snapshot) {}
+
+    shouldComponentUpdate() {
+        return true;
+    }
+
+    getAllVideos = () => {
+        this.props.ui_GetAllVideos();
     }
 
     renderListItem = ({ item }) => {
@@ -111,9 +92,11 @@ class VideoListScreen extends Component {
     
 
     render() {
+        //getAllVideos();
+        console.log("test this.props.videoList", this.props.videoList);
         return(
             <SafeAreaView style={styles.container}>
-                <ScrollView style={styles.scrollView}>
+                <View style={styles.scrollView}>
                     <View style={styles.contentContainer}>
                         <View style={styles.headingContainer}>
                             <Headline style={styles.heding}> Info </Headline>
@@ -122,7 +105,7 @@ class VideoListScreen extends Component {
                             <View style={styles.card}>
                                 <View style={styles.cardContent}>
                                     <FlatList
-                                        data={DATA}
+                                        data={this.props.videoList}
                                         renderItem={this.renderListItem}
                                         keyExtractor={(item) => item.id}
                                         extraData={this.state.selectedListItemId}
@@ -131,7 +114,7 @@ class VideoListScreen extends Component {
                             </View>
                         </View>
                     </View>
-                </ScrollView>
+                </View>
             </SafeAreaView>
         );
     }
@@ -148,10 +131,13 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         //marginHorizontal: 20,
+        flex: 1
     },
     contentContainer: {
         flex: 1,
         flexDirection: "column",
+        alignItems: 'stretch',
+        justifyContent: 'center',
     },
     form: {
         flex: 1,
@@ -195,7 +181,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
     // Redux Store --> Component
     return {
-        isLoading: state.ui.isLoading
+        isLoading: state.ui.isLoading,
+        videoList: state.video.videoList
     };
 };
 
@@ -204,9 +191,11 @@ const mapDispatchToProps = (dispatch) => {
     // Action
     return {
         // startLoading
-        ui_StartLoading: ( payload = {} ) => dispatch(startLoading( payload )),
+        ui_StartLoading: () => dispatch(startLoading()),
         // stopLoading
-        ui_StopLoading: ( payload = {} ) => dispatch(stopLoading( payload ))
+        ui_StopLoading: () => dispatch(stopLoading()),
+        // getAllVideos
+        ui_GetAllVideos: () => dispatch(getAllVideos())
     };
 };
 

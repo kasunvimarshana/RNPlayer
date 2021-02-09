@@ -22,7 +22,7 @@ function AppNavigator() {
     return (
         <NavigationContainer>
             <Drawer.Navigator 
-                initialRouteName="PlayerScreen"
+                initialRouteName="VideoListScreen"
                 screenOptions={{}}
                 //backBehavior={{}}
                 openByDefault={false}
@@ -30,8 +30,8 @@ function AppNavigator() {
                 drawerType={isLargeScreen ? 'permanent' : 'back'}
                 drawerStyle={isLargeScreen ? null : { width: '100%' }}
                 overlayColor='transparent'
-                initialRouteParams={{}}
-                navigationOptions={{}}
+                //initialRouteParams={{}}
+                //navigationOptions={{}}
                 drawerContent={props => <MyDrawerComponent {...props} />}
             >
                 <Drawer.Screen 

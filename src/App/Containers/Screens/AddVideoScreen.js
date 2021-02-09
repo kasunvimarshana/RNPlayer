@@ -24,6 +24,7 @@ import {
  import { FontAwesome } from '@expo/vector-icons';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
+import { createVideo } from '../../Store/Actions/VideoAction';
 
 const logoImage = require('../../Assets/logo-removebg.png');
 
@@ -33,24 +34,93 @@ class AddVideoScreen extends Component {
 
     constructor( props ) {
         super( props );
-        this.state = {};
+        this.state = {
+            uri: "",
+            title: "",
+            description: "",
+            editable: true
+        };
         /*this.setState((prevState) => {
             return {
                 ...prevState,
                 isLoading: false
             }
         });*/
-        this.inputVideoURI = React.createRef();
-        this.inputTitle = React.createRef();
-        this.inputDescription = React.createRef();
-        this.inputSave = React.createRef();
     }
 
-    videoURIOnChange = ( value ) => {}
-    titleOnChange = ( value ) => {}
-    descriptionOnChange = ( value ) => {}
+    videoURIOnChange = ( value ) => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                uri: value
+            }
+        });
+    }
+
+    titleOnChange = ( value ) => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                title: value
+            }
+        });
+    }
+
+    descriptionOnChange = ( value ) => {
+        this.setState((prevState) => {
+            return {
+                ...prevState,
+                description: value
+            }
+        });
+    }
+    
+    createVideo = () => {
+        const video = {
+            uri: this.state.uri,
+            title: this.state.title,
+            description: this.state.description,
+            editable: this.state.editable || false
+        }
+        const expression_uri = new RegExp("^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$");
+
+        if (!video.uri.toLowerCase().match(expression_uri)) {
+            alert("Please Provide a Valid Video URL");
+        }else if( (video.title == null) || (video.title == "") ){
+            alert("Please Provide a Valid Title");
+        }else{
+            this.props.ui_CreateVideo( video );
+        }
+    }
+
+    generateActivityContent = () => {
+        let content = null;
+        if ( this.props.isLoading ) {
+            content = (<ActivityIndicator 
+                animating={true} 
+                color={Colors.red800} />);
+        }else{
+            content = (<Button 
+                icon="content-save-outline" 
+                mode="contained" 
+                onPress={this.createVideo}
+                >
+                    Save
+                </Button>);
+        }
+        return content;
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.isLoading === false) {
+            this.inputVideoURI.clear();
+            this.inputTitle.clear();
+            this.inputDescription.clear();
+        }
+    }
 
     render() {
+        const activityContent = this.generateActivityContent();
         return(
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
@@ -93,14 +163,7 @@ class AddVideoScreen extends Component {
                                         />
                                     </View>
                                     <View style={styles.inputGroup}>
-                                        <Button 
-                                            ref={(ref) => this.inputSave = ref}
-                                            icon="content-save-outline" 
-                                            mode="contained" 
-                                            onPress={() => console.log('Pressed')}
-                                        >
-                                            Save
-                                        </Button>
+                                        { activityContent }
                                     </View>
                                 </View>
                             </View>
@@ -179,9 +242,11 @@ const mapDispatchToProps = (dispatch) => {
     // Action
     return {
         // startLoading
-        ui_StartLoading: ( payload = {} ) => dispatch(startLoading( payload )),
+        ui_StartLoading: () => dispatch(startLoading()),
         // stopLoading
-        ui_StopLoading: ( payload = {} ) => dispatch(stopLoading( payload ))
+        ui_StopLoading: () => dispatch(stopLoading()),
+        // createVideo
+        ui_CreateVideo: ( payload = {} ) => dispatch(createVideo( payload )),
     };
 };
 

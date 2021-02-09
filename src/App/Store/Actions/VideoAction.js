@@ -3,15 +3,37 @@ import {
     SET_VIDEO_LIST 
 } from '../Actions/ActionType';
 
+import { startLoading, stopLoading } from './UIAction';
+
 const DATABASE_URI = "https://calcium-firefly-303215-default-rtdb.firebaseio.com";
 
 export const getAllVideos = () => {
     return (dispatch, getState) => {
-        videoList = null;
+        let videoList = new Array();
         const promise = new Promise((resolve, reject) => {
-            //
+            dispatch(startLoading());
+            fetch(DATABASE_URI + "/videos.json", {
+                method: 'GET'
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                Object.entries(json).forEach(([key, value]) => {
+                    //console.log(key , value);
+                    value.id = key;
+                    videoList.push( value );
+                });
+                console.log(videoList);
+                dispatch(setVideoList(videoList));
+                dispatch(stopLoading());
+                resolve(json);
+            })
+            .catch((error) => {
+                console.error("catch", error);
+                dispatch(stopLoading());
+                reject(error);
+            });
         });
-        dispatch( setVideoList( videoList ) );
         return promise;
     };
 };
@@ -33,14 +55,14 @@ export const selectVideo = ( video ) => {
 export const deleteVideo = ( video ) => {
     return (dispatch, getState) => {
         const selectedVideo = getState().video.selectVideo;
-        const promise = new Promise((resolve, reject) = {
+        const promise = new Promise((resolve, reject) => {
             //
         });
         return promise;
     };
 };
 
-export default updateVideo = ( video ) => {
+export const updateVideo = ( video ) => {
     return (dispatch, getState) => {
         const selectedVideo = getState().video.selectVideo;
         const promise = new Promise((resolve, reject) => {
@@ -50,10 +72,31 @@ export default updateVideo = ( video ) => {
     };
 };
 
-export default createVideo = ( video ) => {
+export const createVideo = ( video ) => {
     return (dispatch, getState) => {
         const promise = new Promise((resolve, reject) => {
-            //
+            dispatch(startLoading());
+            fetch(DATABASE_URI + "/videos.json", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...video
+                })
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                dispatch(stopLoading());
+                resolve(json);
+            })
+            .catch((error) => {
+                console.error("catch", error);
+                dispatch(stopLoading());
+                reject(error);
+            });
         });
         return promise;
     };

@@ -40,8 +40,6 @@ class VideoScreen extends Component {
                 isLoading: false
             }
         });*/
-        this.inputDelete = React.createRef();
-        this.inputPlay = React.createRef();
     }
 
     render() {
@@ -70,7 +68,6 @@ class VideoScreen extends Component {
                                     </View>
                                     <View style={styles.inputGroup}>
                                         <Button 
-                                            ref={(ref) => this.inputDelete = ref}
                                             icon="trash-can-outline" 
                                             mode="contained" 
                                             onPress={() => console.log('Pressed')}
@@ -80,7 +77,6 @@ class VideoScreen extends Component {
                                     </View>
                                     <View style={styles.inputGroup}>
                                         <Button 
-                                            ref={(ref) => this.inputPlay = ref}
                                             icon="play-circle-outline" 
                                             mode="contained" 
                                             onPress={() => console.log('Pressed')}
@@ -165,9 +161,9 @@ const mapDispatchToProps = (dispatch) => {
     // Action
     return {
         // startLoading
-        ui_StartLoading: ( payload = {} ) => dispatch(startLoading( payload )),
+        ui_StartLoading: () => dispatch(startLoading()),
         // stopLoading
-        ui_StopLoading: ( payload = {} ) => dispatch(stopLoading( payload ))
+        ui_StopLoading: () => dispatch(stopLoading())
     };
 };
 

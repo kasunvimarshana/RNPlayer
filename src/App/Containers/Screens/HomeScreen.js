@@ -110,10 +110,12 @@ const mapDispatchToProps = (dispatch) => {
     // Action
     return {
         // startLoading
-        ui_StartLoading: ( payload = {} ) => dispatch(startLoading( payload )),
+        ui_StartLoading: () => dispatch(startLoading()),
         // stopLoading
-        ui_StopLoading: ( payload = {} ) => dispatch(stopLoading( payload ))
+        ui_StopLoading: () => dispatch(stopLoading())
     };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+
+/*React.useEffect(() => { console.log("component updated"); });*/
