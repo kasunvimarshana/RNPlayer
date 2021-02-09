@@ -43,6 +43,9 @@ class VideoScreen extends Component {
     }
 
     render() {
+
+        console.log("default_route_params", this.props.route.params);
+
         return(
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>

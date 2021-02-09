@@ -58,11 +58,22 @@ export default function MyDrawerComponent( props ){
                                 }}
                             />
                         </Drawer.Section>
+
+                        <Drawer.Section>
+                            <DrawerItem 
+                                label='VideoScreen'
+                                onPress={() => {
+                                    props.navigation.navigate('VideoScreen')
+                                }}
+                            />
+                        </Drawer.Section>
                     </View>
                 </ScrollView>
         </SafeAreaView>
     );
 }
+
+// props.navigation.navigate('ScreenName', { data_kay: data_value })
 
 const styles = StyleSheet.create({
     container: {

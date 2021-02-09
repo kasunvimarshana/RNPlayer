@@ -6,12 +6,24 @@ import AppNavigator from './src/App/Navigators/AppNavigator';
 import configureStore from './src/App/Store/Store/Store';
 import { Provider } from 'react-redux';
 
+function testStore( payload ) {
+  return {
+    type: 'ACTION_TYPE_TEST_STORE',
+    payload: payload
+  }
+}
+
 export default function App() {
   const store = configureStore();
+  const storeStatus = store.getState();
+  console.log( storeStatus );
+  const { defaultVideo } = storeStatus.video;
+  store.dispatch(testStore('Test Store'))
+
   return (
     <Provider store={store}>
         <PaperProvider>
-            <AppNavigator />
+            <AppNavigator defaultVideo={ defaultVideo }/>
         </PaperProvider>
     </Provider>
   );

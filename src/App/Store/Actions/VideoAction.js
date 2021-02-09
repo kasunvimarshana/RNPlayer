@@ -56,7 +56,21 @@ export const deleteVideo = ( video ) => {
     return (dispatch, getState) => {
         const selectedVideo = getState().video.selectVideo;
         const promise = new Promise((resolve, reject) => {
-            //
+            dispatch(startLoading());
+            fetch(DATABASE_URI + "/videos/" + video.id + ".json", {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json);
+                dispatch(stopLoading());
+                resolve(json);
+            })
+            .catch((error) => {
+                console.error("catch", error);
+                dispatch(stopLoading());
+                reject(error);
+            });
         });
         return promise;
     };

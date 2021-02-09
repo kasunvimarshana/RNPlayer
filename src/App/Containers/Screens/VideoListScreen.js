@@ -79,7 +79,8 @@ class VideoListScreen extends Component {
         this.setState((prevState) => {
             return {
                 ...prevState,
-                selectedListItemId: value
+                selectedListItem: value,
+                selectedListItemId: value.id
             }
         });
     }
@@ -103,7 +104,7 @@ class VideoListScreen extends Component {
         return (
             <ListItem
                 item={item}
-                onPress={() => this.listItemOnSelect(item.id)}
+                onPress={() => this.listItemOnSelect( item )}
                 style={{ backgroundColor }}
             />
         );
