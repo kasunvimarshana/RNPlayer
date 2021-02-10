@@ -18,7 +18,7 @@ export default function App() {
   const storeStatus = store.getState();
   //console.log( storeStatus );
   const { defaultVideo } = storeStatus.video;
-  store.dispatch(testStore('Test Store'))
+  //store.dispatch(testStore('Test Store'))
 
   return (
     <Provider store={store}>

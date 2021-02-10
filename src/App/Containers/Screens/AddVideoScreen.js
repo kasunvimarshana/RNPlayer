@@ -159,7 +159,7 @@ class AddVideoScreen extends Component {
                                     <View style={styles.inputGroup}>
                                         <TextInput
                                             style={styles.input}
-                                            placeholder="Video URL"
+                                            placeholder="Video URL (http://exsample.com)"
                                             ref={(ref) => this.inputVideoURI = ref}
                                             value = {this.state.videoURIValue}
                                             defaultValue={this.state.videoURIValue}
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight || 0,
         justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: Colors.red300
+        backgroundColor: Colors.teal400
     },
     scrollView: {
         //marginHorizontal: 20,

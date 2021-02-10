@@ -80,7 +80,7 @@ class VideoScreen extends Component {
                         text: 'Ok', 
                         onPress: () => {
                             this.props.ui_DeleteVideo( video ).then(
-                                this.props.navigation.navigate('VidelListScreen', {})
+                                this.props.navigation.navigate('VideoListScreen', {})
                             );
                         }
                     },
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight || 0,
         justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: Colors.red300
+        backgroundColor: Colors.teal400
     },
     scrollView: {
         //marginHorizontal: 20,

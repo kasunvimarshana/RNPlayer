@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         paddingTop: StatusBar.currentHeight || 0,
         justifyContent: 'center',
         alignItems: 'stretch',
-        backgroundColor: Colors.red300
+        backgroundColor: Colors.teal400
     },
     scrollView: {
         //marginHorizontal: 20,

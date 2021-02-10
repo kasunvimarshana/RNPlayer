@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useWindowDimensions } from 'react-native';
+import { StyleSheet, StatusBar, useWindowDimensions } from 'react-native';
+import { Colors } from 'react-native-paper';
 import { createDrawerNavigator, useIsDrawerOpen  } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
@@ -106,5 +107,15 @@ function AppNavigator( navigator_props ) {
         </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: StatusBar.currentHeight || 0,
+        justifyContent: 'center',
+        alignItems: 'stretch',
+        backgroundColor: Colors.teal400
+    },
+});
 
 export default AppNavigator;

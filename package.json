@@ -11,7 +11,8 @@
     "android:build": "cd android && ./gradlew assembleRelease",
     "android:bundle": "cd android && ./gradlew bundleRelease",
     "android:install": "cd android && ./gradlew assembleRelease && ./gradlew installRelease",
-    "android:menu": "adb shell input keyevent 82"
+    "android:menu": "adb shell input keyevent 82",
+    "expo_start": "expo start -c"
   },
   "dependencies": {
     "@babel/runtime": "^7.12.13",
@@ -54,7 +55,8 @@
     "react-native-webview": "11.0.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "expo-device": "~2.4.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
