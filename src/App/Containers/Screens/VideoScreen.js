@@ -6,6 +6,7 @@ import {
     StyleSheet, 
     ImageBackground,
     Image,
+    Alert,
     StatusBar 
 } from 'react-native';
 import { connect } from 'react-redux';
@@ -24,7 +25,7 @@ import {
  import { FontAwesome } from '@expo/vector-icons';
 
 import { startLoading, stopLoading } from '../../Store/Actions/UIAction';
-
+import { deleteVideo } from '../../Store/Actions/VideoAction';
 const logoImage = require('../../Assets/logo-removebg.png');
 
 class VideoScreen extends Component {
@@ -33,19 +34,115 @@ class VideoScreen extends Component {
 
     constructor( props ) {
         super( props );
-        this.state = {};
+        this.state = {
+            focusSubscription: null
+        };
         /*this.setState((prevState) => {
             return {
                 ...prevState,
                 isLoading: false
             }
         });*/
+
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.state.focusSubscription = focusSubscription;
+    }
+
+    componentDidMount() {
+        //this.props.navigation will come in every component which is in navigator
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.setState({focusSubscription: focusSubscription});
+    }
+    
+    componentWillUnmount() {
+        //this.state.focusSubscription.remove();
+    }
+
+    //UNSAFE_componentWillReceiveProps(nextProps) {}
+
+    onDeletePressHandler = ( video ) => {
+        if( video.editable ){
+            Alert.alert(
+                'Alert',
+                'Please Confirm',
+                [
+                    {
+                        text: 'Ok', 
+                        onPress: () => {
+                            this.props.ui_DeleteVideo( video ).then(
+                                this.props.navigation.navigate('VidelListScreen', {})
+                            );
+                        }
+                    },
+                    {
+                        text: 'Cancel', 
+                        onPress: () => console.log('Cancel'), 
+                        style: 'cancel'
+                    },
+                ],
+                { cancelable: false }
+            );
+        }else{
+            Alert.alert(
+                'Alert',
+                'This Video Cant Delete',
+                [
+                    {
+                        text: 'Ok', 
+                        onPress: () => console.log('Cancel'), 
+                        style: 'cancel'
+                    },
+                ],
+                { cancelable: false }
+            );
+        }
+        //this.props.navigation.navigate('VideoScreen', {video: value});
+    }
+
+    onPlayPressHandler = ( value ) => {
+        this.props.navigation.navigate('PlayerScreen', {video: value});
+    }
+
+    generateDeleteActivityContent = ( selectedVideo ) => {
+        let content = null;
+        if ( this.props.isLoading ) {
+            content = (<ActivityIndicator 
+                animating={true} 
+                color={Colors.red800} 
+            />);
+        }else{
+            content = (<Button 
+                icon="trash-can-outline" 
+                mode="contained" 
+                onPress={() => this.onDeletePressHandler( selectedVideo )}
+            >
+                Delete
+            </Button>);
+        }
+        return content;
+    }
+
+    getSelectedVideo = () => {
+        //const { videoURI } = this.props.route.params;
+        const { defaultVideo, video } = this.props.route.params;
+        //const selectedVideo = ( video && Object.keys(video).length > 0 && video.constructor !== Object ) ? video : defaultVideo;
+        const selectedVideo = ( video && Object.keys(video).length > 0 ) ? video : defaultVideo;
+        return selectedVideo;
     }
 
     render() {
-
-        console.log("default_route_params", this.props.route.params);
-
+        const selectedVideo = this.getSelectedVideo();
+        const deleteActivityContent = this.generateDeleteActivityContent( selectedVideo );
         return(
             <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
@@ -58,31 +155,25 @@ class VideoScreen extends Component {
                                 <Image style={styles.coverImage} source={logoImage} />
                                 <View style={styles.cardContent}>
                                     <View style={styles.inputGroup}>
-                                        <Text> Video URI </Text>
-                                        <Text></Text>
+                                        <Text style={styles.inputLabel}> Video URI </Text>
+                                        <Text style={styles.inputValue}>{selectedVideo.uri}</Text>
                                     </View>
                                     <View style={styles.inputGroup}>
-                                        <Text> Title </Text>
-                                        <Text></Text>
+                                        <Text style={styles.inputLabel}> Title </Text>
+                                        <Text style={styles.inputValue}>{selectedVideo.title}</Text>
                                     </View>
                                     <View style={styles.inputGroup}>
-                                        <Text> Description </Text>
-                                        <Text></Text>
+                                        <Text style={styles.inputLabel}> Description </Text>
+                                        <Text style={styles.inputValue}>{selectedVideo.description}</Text>
                                     </View>
                                     <View style={styles.inputGroup}>
-                                        <Button 
-                                            icon="trash-can-outline" 
-                                            mode="contained" 
-                                            onPress={() => console.log('Pressed')}
-                                        >
-                                            Delete
-                                        </Button>
+                                        { deleteActivityContent }
                                     </View>
                                     <View style={styles.inputGroup}>
                                         <Button 
                                             icon="play-circle-outline" 
                                             mode="contained" 
-                                            onPress={() => console.log('Pressed')}
+                                            onPress={() => this.onPlayPressHandler(selectedVideo)}
                                         >
                                             Play
                                         </Button>
@@ -117,10 +208,20 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
+        paddingHorizontal: 5
     },
     inputGroup: {
         width: '100%',
         paddingBottom: 5
+    },
+    inputLabel: {
+        fontWeight: 'bold',
+        color: Colors.white,
+        fontSize: 23
+    },
+    inputValue: {
+        color: Colors.white,
+        fontSize: 18
     },
     card: {
         flex: 1,
@@ -147,7 +248,8 @@ const styles = StyleSheet.create({
     },
     heding: {
         fontWeight: 'bold',
-        color: Colors.white
+        color: Colors.white,
+        fontSize: 30
     }
 });
 
@@ -166,7 +268,9 @@ const mapDispatchToProps = (dispatch) => {
         // startLoading
         ui_StartLoading: () => dispatch(startLoading()),
         // stopLoading
-        ui_StopLoading: () => dispatch(stopLoading())
+        ui_StopLoading: () => dispatch(stopLoading()),
+        // deleteVideo
+        ui_DeleteVideo: (video) => dispatch(deleteVideo(video))
     };
 };
 

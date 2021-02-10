@@ -37,10 +37,7 @@ class PlayerScreen extends Component {
 
     constructor( props ) {
         super( props );
-        this.state = {
-          canGoBack: false,
-          focusSubscription: null
-        };
+        this.state = {};
         /*this.setState((prevState) => {
             return {
                 ...prevState,
@@ -50,33 +47,14 @@ class PlayerScreen extends Component {
 
         this.webViewRef = React.createRef();
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-
-        focusSubscription = this.props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.forceUpdate();//Native react function to force rerendering
-            }
-        );
-        this.state.focusSubscription = focusSubscription;
     }
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
-
-        //this.props.navigation will come in every component which is in navigator
-        focusSubscription = this.props.navigation.addListener(
-            'willFocus',
-            payload => {
-                this.forceUpdate();//Native react function to force rerendering
-            }
-        );
-        this.setState({focusSubscription: focusSubscription});
     }
 
     componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
-
-        //this.state.focusSubscription.remove();
     }
 
     UNSAFE_componentWillMount() {
@@ -84,18 +62,11 @@ class PlayerScreen extends Component {
     }
 
     handleBackButton = () =>{
-        /*if(this.webViewRef){
+        if(this.webViewRef){
             //this.webViewRef.current.goBack();
             this.webViewRef.goBack();
         }
-        return true;*/
-        //console.log("webViewRef", this.webViewRef);
-        if (this.state.canGoBack) {
-          //this.webViewRef.goBack();
-          const selectedVideo = this.getSelectedVideo();
-          this.props.navigation.navigate("VideoScreen", {video: selectedVideo});
-          return true;
-        }
+        return true;
     }
 
     getSelectedVideo = () => {
@@ -108,12 +79,8 @@ class PlayerScreen extends Component {
 
     onNavigationStateChange(navState) {
         console.log('navState.canGoBack', navState.canGoBack);
-        /*this.setState({
-          canGoBack: navState.canGoBack,
-        });*/
-        this.setState({
-            canGoBack: true
-        });
+        const selectedVideo = this.getSelectedVideo();
+        this.props.navigation.navigate("VideoScreen", {video: selectedVideo});
     }
 
     render() {
@@ -123,25 +90,20 @@ class PlayerScreen extends Component {
             window.isNativeApp = true;
             true; // note: this is required, or you'll sometimes get silent failures
         `;
-        //onNavigationStateChange={this.onNavigationStateChange.bind(this)}
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.scrollView}>
                     <View style={styles.contentContainer}>
-                      <WebView
-                        ref={(ref) => this.webViewRef = ref}
-                        style={styles.webView}
-                        source={{
-                          uri: uri
-                        }}
-                        scalesPageToFit={ true }
-                        startInLoadingState={ true }
-                        javaScriptEnabled={true}
-                        useWebKit={false}
-                        mediaPlaybackRequiresUserAction={true}
-                        onNavigationStateChange={this.onNavigationStateChange.bind(this)}
-                        allowsBackForwardNavigationGestures
-                      />
+                    <WebView
+                    source={{ url: 'https://www.google.com/search?q=react+native+school' }}
+                    startInLoadingState
+                    renderLoading={() => (
+                    <View style={{ flex: 1, alignItems: 'center' }}>
+                    <ActivityIndicator size="large" />
+                    </View>
+                    )}
+                    allowsBackForwardNavigationGestures
+                    />
                     </View>
                 </View>
             </SafeAreaView>
@@ -229,31 +191,6 @@ class PlayerScreen extends Component {
                             domStorageEnabled={true}
                             allowsBackForwardNavigationGestures
                         />
-*/
-
-/*
-<WebView
-                        ref={(ref) => this.webViewRef = ref}
-                        style={styles.webView}
-                        originWhitelist={['*']}
-                        sharedCookiesEnabled={false}
-                        injectedJavaScriptBeforeContentLoaded={runFirst}
-                        source={{
-                          uri: uri
-                        }}
-                        onMessage={(event) => {}}
-                        injectedJavaScript={runFirst}
-                        onNavigationStateChange={this.onNavigationStateChange.bind(this)}
-                        startInLoadingState
-                        renderLoading={() => (
-                          <View style={{ flex: 1, alignItems: 'center' }}>
-                            <ActivityIndicator size="large" />
-                          </View>
-                        )}
-                        javaScriptEnabled={true}
-                        domStorageEnabled={true}
-                        allowsBackForwardNavigationGestures
-                      />
 */
 
 const styles = StyleSheet.create({

@@ -40,6 +40,13 @@ class HomeScreen extends Component {
                 isLoading: false
             }
         });*/
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.state.focusSubscription = focusSubscription;
     }
 
     componentDidMount() {

@@ -37,7 +37,8 @@ class VideoListScreen extends Component {
     constructor( props ) {
         super( props );
         this.state = {
-            selectedListItemId: 0
+            selectedListItemId: 0,
+            focusSubscription: null
         };
         /*this.setState((prevState) => {
             return {
@@ -49,33 +50,53 @@ class VideoListScreen extends Component {
         this.inputPlay = React.createRef();
 
         this._didFocusUnsubscribe = props.navigation.addListener("didFocus", (payload) => {
-            console.log("didFocus");
+            //console.log("didFocus");
         });
 
         this._focusUnsubscribe = props.navigation.addListener('focus', (payload) => {
             this.getAllVideos();
         });
+
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.state.focusSubscription = focusSubscription;
     }
 
     componentDidMount() {
         this._didFocusUnsubscribe = this.props.navigation.addListener("didFocus", (payload) => {
-            console.log("didFocus");
+            //console.log("didFocus");
         });
 
         this._focusUnsubscribe = this.props.navigation.addListener('focus', (payload) => {
             this.getAllVideos();
         });
-    }
 
+        //this.props.navigation will come in every component which is in navigator
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.setState({focusSubscription: focusSubscription});
+    }
+    
+    componentWillUnmount() {
+        //this.state.focusSubscription.remove();
+    }
+    
     UNSAFE_componentWillMount() {
         //this._didFocusUnsubscribe.remove();
         //this._focusUnsubscribe.remove();
-        //this._didFocusUnsubscribe();
-        //this._focusUnsubscribe();
+        this._didFocusUnsubscribe();
+        this._focusUnsubscribe();
     }
 
     listItemOnSelect = ( value ) => {
-        console.log("listItemOnSelect", value);
         this.setState((prevState) => {
             return {
                 ...prevState,
@@ -83,6 +104,9 @@ class VideoListScreen extends Component {
                 selectedListItemId: value.id
             }
         });
+
+        //this.props.navigation.navigate('VideoScreen', {defaultVideo: value});
+        this.props.navigation.navigate('VideoScreen', {video: value});
     }
 
     //UNSAFE_componentWillMount() {}
@@ -94,7 +118,7 @@ class VideoListScreen extends Component {
     //shouldComponentUpdate() { return true; }
 
     getAllVideos = () => {
-        this.props.ui_GetAllVideos();
+        return this.props.ui_GetAllVideos();
     }
 
     renderListItem = ({ item }) => {
@@ -109,11 +133,35 @@ class VideoListScreen extends Component {
             />
         );
     };
-    
+
+    generateListItemContent = () => {
+        let content = null;
+        content = (<FlatList
+            data={this.props.videoList}
+            renderItem={this.renderListItem}
+            keyExtractor={(item) => item.id}
+            extraData={this.state.selectedListItemId}
+        />);
+        //if (content?.length) {}
+        if (!Array.isArray(this.props.videoList) || !this.props.videoList.length) {
+            /*content = (<ActivityIndicator 
+                animating={true} 
+                color={Colors.red800} 
+            />);*/
+        }else{
+            content = (<FlatList
+                data={this.props.videoList}
+                renderItem={this.renderListItem}
+                keyExtractor={(item) => item.id}
+                extraData={this.state.selectedListItemId}
+            />);
+        }
+        
+        return content;
+    }
 
     render() {
-        //getAllVideos();
-        console.log("test this.props.videoList", this.props.videoList);
+        const listItemContent = this.generateListItemContent();
         return(
             <SafeAreaView style={styles.container}>
                 <View style={styles.scrollView}>
@@ -124,12 +172,7 @@ class VideoListScreen extends Component {
                         <View style={styles.form}>
                             <View style={styles.card}>
                                 <View style={styles.cardContent}>
-                                    <FlatList
-                                        data={this.props.videoList}
-                                        renderItem={this.renderListItem}
-                                        keyExtractor={(item) => item.id}
-                                        extraData={this.state.selectedListItemId}
-                                    />
+                                    {listItemContent}
                                 </View>
                             </View>
                         </View>
@@ -163,6 +206,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
+        paddingHorizontal: 5
     },
     inputGroup: {
         width: '100%',
@@ -193,7 +237,8 @@ const styles = StyleSheet.create({
     },
     heding: {
         fontWeight: 'bold',
-        color: Colors.white
+        color: Colors.white,
+        fontSize: 30
     }
 });
 

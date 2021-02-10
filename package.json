@@ -33,6 +33,7 @@
     "expo-status-bar": "~1.0.3",
     "expo-updates": "^0.4.1",
     "expo-video-player": "^1.6.1",
+    "expo-web-browser": "~8.6.0",
     "formik": "^2.2.6",
     "i18next": "^19.8.7",
     "moment": "^2.29.1",
@@ -50,6 +51,7 @@
     "react-native-screens": "~2.15.2",
     "react-native-unimodules": "^0.12.0",
     "react-native-web": "~0.13.12",
+    "react-native-webview": "11.0.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0"

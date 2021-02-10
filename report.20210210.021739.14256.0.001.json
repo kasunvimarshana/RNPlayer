@@ -1,0 +1,462 @@
+
+{
+  "header": {
+    "reportVersion": 2,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20210210.021739.14256.0.001.json",
+    "dumpEventTime": "2021-02-10T02:18:16Z",
+    "dumpEventTimeStamp": "1612903696342",
+    "processId": 14256,
+    "threadId": null,
+    "cwd": "F:\\MY_PROJECTS_FILES_TESTS\\App\\my-project",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\\\node.exe",
+      "C:\\Users\\KASUN\\.global-modules\\node_modules\\npm\\bin\\npm-cli.js",
+      "i",
+      "--save",
+      "@randomdotcom/rn-player"
+    ],
+    "nodejsVersion": "v12.16.3",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.16.3",
+      "v8": "7.8.279.23-node.35",
+      "uv": "1.34.2",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.16.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1g",
+      "cldr": "36.0",
+      "icu": "65.1",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.16.3/node-v12.16.3-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.16.3/node-v12.16.3.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.16.3/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "6.3.9600",
+    "osVersion": "Windows 8.1 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i3-3120M CPU @ 2.50GHz",
+        "speed": 2494,
+        "user": 36513093,
+        "nice": 0,
+        "sys": 30482875,
+        "idle": 52427703,
+        "irq": 1946687
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-3120M CPU @ 2.50GHz",
+        "speed": 2494,
+        "user": 36329125,
+        "nice": 0,
+        "sys": 32694125,
+        "idle": 50400218,
+        "irq": 1058687
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-3120M CPU @ 2.50GHz",
+        "speed": 2494,
+        "user": 38342140,
+        "nice": 0,
+        "sys": 35595296,
+        "idle": 45486031,
+        "irq": 662546
+      },
+      {
+        "model": "Intel(R) Core(TM) i3-3120M CPU @ 2.50GHz",
+        "speed": 2494,
+        "user": 34826937,
+        "nice": 0,
+        "sys": 33058265,
+        "idle": 51538265,
+        "irq": 615343
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "40:f0:2f:69:2d:7e",
+        "address": "2407:c00:5003:c60c:2d17:81d2:38b1:c54a",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "40:f0:2f:69:2d:7e",
+        "address": "2407:c00:5003:c60c:b554:eae2:9050:7de9",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "40:f0:2f:69:2d:7e",
+        "address": "fe80::2d17:81d2:38b1:c54a",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 10
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "40:f0:2f:69:2d:7e",
+        "address": "192.168.43.57",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VirtualBox Host-Only Network",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1d",
+        "address": "fe80::a868:5bb7:4615:a12e",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 29
+      },
+      {
+        "name": "VirtualBox Host-Only Network",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1d",
+        "address": "192.168.56.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VirtualBox Host-Only Network #2",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1e",
+        "address": "fe80::3c13:7c05:a5cc:87ec",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 30
+      },
+      {
+        "name": "VirtualBox Host-Only Network #2",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1e",
+        "address": "192.168.1.102",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VirtualBox Host-Only Network #3",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1f",
+        "address": "fe80::c42e:f676:71e1:525c",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 31
+      },
+      {
+        "name": "VirtualBox Host-Only Network #3",
+        "internal": false,
+        "mac": "0a:00:27:00:00:1f",
+        "address": "192.168.45.2",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "KASUN-PC"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff706462449",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+11577"
+    },
+    {
+      "pc": "0x00007ff7064669a9",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+29337"
+    },
+    {
+      "pc": "0x00007ff706465828",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24856"
+    },
+    {
+      "pc": "0x00007ff70659d8c2",
+      "symbol": "v8::base::CPU::has_sse+68658"
+    },
+    {
+      "pc": "0x00007ff706db9bbe",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff706da1c91",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff706c6e1ec",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff706c76171",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3761"
+    },
+    {
+      "pc": "0x00007ff706c6b743",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff706c69db4",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2452"
+    },
+    {
+      "pc": "0x00007ff706c8afbd",
+      "symbol": "v8::internal::Factory::NewFillerObject+61"
+    },
+    {
+      "pc": "0x00007ff7069f1871",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+1665"
+    },
+    {
+      "pc": "0x00007ff707206c4d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
+    },
+    {
+      "pc": "0x00007ff70718d0f1",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+48113"
+    },
+    {
+      "pc": "0x000002790f9cc5ed",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 85712896,
+    "totalCommittedMemory": 85712896,
+    "usedMemory": 78597464,
+    "availableMemory": 2054596896,
+    "memoryLimit": 2132803584,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 32808,
+        "used": 32808,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1047456,
+        "used": 1047416,
+        "available": 40
+      },
+      "old_space": {
+        "memorySize": 77475840,
+        "committedMemory": 77475840,
+        "capacity": 77243040,
+        "used": 72622056,
+        "available": 4620984
+      },
+      "code_space": {
+        "memorySize": 2265088,
+        "committedMemory": 2265088,
+        "capacity": 2139424,
+        "used": 1547232,
+        "available": 592192
+      },
+      "map_space": {
+        "memorySize": 3411968,
+        "committedMemory": 3411968,
+        "capacity": 3406896,
+        "used": 2161360,
+        "available": 1245536
+      },
+      "large_object_space": {
+        "memorySize": 1200128,
+        "committedMemory": 1200128,
+        "capacity": 1183808,
+        "used": 1183808,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 2784,
+        "used": 2784,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047456,
+        "used": 0,
+        "available": 1047456
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 82.234,
+    "kernelCpuSeconds": 171.531,
+    "cpuConsumptionPercent": 28.5129,
+    "maxRss": 183414784,
+    "pageFaults": {
+      "IORequired": 229683,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 7248,
+      "writes": 49689
+    }
+  },
+  "libuv": [
+  ],
+  "workers": [
+  ],
+  "environmentVariables": {
+    "=::": "::\\",
+    "=F:": "F:\\MY_PROJECTS_FILES_TESTS\\App\\my-project",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "ANDROID_HOME": "C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk",
+    "ANDROID_SDK": "C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk",
+    "APPDATA": "C:\\Users\\KASUN\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132333514294867915",
+    "CLASSPATH": ".;.;.;.;C:\\PROGRA~2\\JMF21~1.1E\\lib\\sound.jar;C:\\PROGRA~2\\JMF21~1.1E\\lib\\jmf.jar;C:\\PROGRA~2\\JMF21~1.1E\\lib;",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "KASUN-PC",
+    "ComSpec": "C:\\Windows\\system32\\cmd.exe",
+    "easyplussdk": "\"C:\\Program Files (x86)\\Common Files\\lenovo\\easyplussdk\\bin\"",
+    "FP_NO_HOST_CHECK": "NO",
+    "HOME": "C:\\Users\\KASUN",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\KASUN",
+    "JAVA_HOME": "C:\\Program Files\\Java\\jdk1.8.0_251",
+    "LOCALAPPDATA": "C:\\Users\\KASUN\\AppData\\Local",
+    "LOGONSERVER": "\\\\KASUN-PC",
+    "NODE_EXE": "C:\\Program Files\\nodejs\\\\node.exe",
+    "NODE_PATH": "C:\\Users\\KASUN\\AppData\\Roaming\\npm",
+    "NPM_CLI_JS": "C:\\Users\\KASUN\\.global-modules\\node_modules\\npm\\bin\\npm-cli.js",
+    "NPM_PREFIX_NPM_CLI_JS": "C:\\Users\\KASUN\\.global-modules\\node_modules\\npm\\bin\\npm-cli.js",
+    "NUMBER_OF_PROCESSORS": "4",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Python38\\Scripts\\;C:\\Python38\\;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Windows\\system32\\config\\systemprofile\\AppData\\Roaming\\npm;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk;C:\\Users\\KASUN\\AppData\\Roaming\\npm;C:\\Users\\KASUN\\.global-modules;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk\\build-tools;C:\\Program Files\\Java\\jdk1.8.0_251\\bin;C:\\Program Files\\Git\\cmd;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Symfony;C:\\Users\\KASUN\\AppData\\Local\\Programs\\Python\\Python38-32\\Scripts\\;C:\\Users\\KASUN\\AppData\\Local\\Programs\\Python\\Python38-32\\;C:\\Python38\\Scripts\\;C:\\Python38\\;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Users\\KASUN\\AppData\\Roaming\\npm;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk;C:\\Users\\KASUN\\AppData\\Roaming\\npm;C:\\Users\\KASUN\\.global-modules;C:\\Program Files\\Git\\cmd;C:\\Program Files (x86)\\Yarn\\bin\\;C:\\Users\\KASUN\\AppData\\Local\\Android\\Sdk\\build-tools;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\Java\\jdk1.8.0_251\\bin;C:\\Users\\KASUN\\AppData\\Local\\Programs\\Python\\Python36\\Scripts\\;C:\\Users\\KASUN\\AppData\\Local\\Programs\\Python\\Python36\\;C:\\Users\\KASUN\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\KASUN\\AppData\\Local\\Yarn\\bin;C:\\Users\\KASUN\\AppData\\Local\\.meteor;;C:\\Users\\KASUN\\AppData\\Local\\Programs\\Microsoft VS Code\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 58 Stepping 9, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "3a09",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SNE": "https://feed.helperbar.com/?publisher=defaultap&co=LK&userid=a38452cf-d62f-b6c9-8474-1589bc4829b3&searchtype=ds&q={searchTerms}&installDate=&barcodeid=50014999&channelid=999&av=windows& --load-extension=\"C:\\Users\\KASUN\\AppData\\Local\\app\"",
+    "SNF": "C:\\ProgramData\\Ronzap\\snp.sc",
+    "SNP": "https://%66%65%65%64.%68%65%6C%70%65%72%62%61%72.%63%6F%6D?publisher=defaultap&co=LK&userid=a38452cf-d62f-b6c9-8474-1589bc4829b3&searchtype=sc&installDate=&barcodeid=50014999&channelid=999&av=windows",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\Windows",
+    "TEMP": "C:\\Users\\KASUN\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\KASUN\\AppData\\Local\\Temp",
+    "USERDOMAIN": "KASUN-PC",
+    "USERDOMAIN_ROAMINGPROFILE": "KASUN-PC",
+    "USERNAME": "KASUN",
+    "USERPROFILE": "C:\\Users\\KASUN",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "VS100COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\Tools\\",
+    "VS110COMNTOOLS": "F:\\visual studio\\Common7\\Tools\\",
+    "windir": "C:\\Windows"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\Windows\\SYSTEM32\\ntdll.dll",
+    "C:\\Windows\\system32\\KERNEL32.DLL",
+    "C:\\Windows\\system32\\KERNELBASE.dll",
+    "C:\\Windows\\SYSTEM32\\dbghelp.dll",
+    "C:\\Windows\\system32\\WS2_32.dll",
+    "C:\\Windows\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\Windows\\system32\\PSAPI.DLL",
+    "C:\\Windows\\SYSTEM32\\USERENV.dll",
+    "C:\\Windows\\system32\\ADVAPI32.dll",
+    "C:\\Windows\\system32\\USER32.dll",
+    "C:\\Windows\\system32\\CRYPT32.dll",
+    "C:\\Windows\\SYSTEM32\\bcrypt.dll",
+    "C:\\Windows\\SYSTEM32\\WINMM.dll",
+    "C:\\Windows\\system32\\msvcrt.dll",
+    "C:\\Windows\\system32\\NSI.dll",
+    "C:\\Windows\\system32\\RPCRT4.dll",
+    "C:\\Windows\\SYSTEM32\\WINNSI.DLL",
+    "C:\\Windows\\SYSTEM32\\profapi.dll",
+    "C:\\Windows\\SYSTEM32\\sechost.dll",
+    "C:\\Windows\\system32\\GDI32.dll",
+    "C:\\Windows\\system32\\MSASN1.dll",
+    "C:\\Windows\\SYSTEM32\\WINMMBASE.dll",
+    "C:\\Windows\\SYSTEM32\\cfgmgr32.dll",
+    "C:\\Windows\\SYSTEM32\\DEVOBJ.dll",
+    "C:\\Windows\\system32\\IMM32.DLL",
+    "C:\\Windows\\system32\\MSCTF.dll",
+    "C:\\Windows\\system32\\IseGuard64.dll",
+    "C:\\Windows\\SYSTEM32\\ntmarta.dll",
+    "C:\\Windows\\SYSTEM32\\powrprof.dll",
+    "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\Windows\\SYSTEM32\\bcryptPrimitives.dll",
+    "C:\\Windows\\system32\\uxtheme.dll",
+    "C:\\Windows\\SYSTEM32\\combase.dll",
+    "C:\\Windows\\system32\\LavasoftTcpService64.dll",
+    "C:\\Windows\\SYSTEM32\\MSWSOCK.dll",
+    "C:\\Windows\\system32\\ole32.dll",
+    "C:\\Windows\\system32\\OLEAUT32.dll",
+    "C:\\Windows\\SYSTEM32\\VERSION.dll",
+    "C:\\Windows\\SYSTEM32\\SspiCli.dll",
+    "C:\\Windows\\SYSTEM32\\kernel.appcore.dll",
+    "C:\\Windows\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\Windows\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\Windows\\system32\\napinsp.dll",
+    "C:\\Windows\\system32\\pnrpnsp.dll",
+    "C:\\Windows\\system32\\NLAapi.dll",
+    "C:\\Windows\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\winrnr.dll",
+    "C:\\Windows\\system32\\wshbth.dll",
+    "C:\\Program Files\\Bonjour\\mdnsNSP.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\Windows\\System32\\fwpuclnt.dll"
+  ]
+}

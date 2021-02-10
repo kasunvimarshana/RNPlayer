@@ -38,12 +38,15 @@ const styles = StyleSheet.create({
     },
     item: {
         flex: 1,
-        padding: 20,
+        padding: 5,
         marginVertical: 8,
         marginHorizontal: 16,
+        borderRadius: 5
     },
     title: {
-        fontSize: 32,
+        fontWeight: 'bold',
+        color: Colors.white,
+        fontSize: 23
     },
 });
 

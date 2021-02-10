@@ -54,16 +54,7 @@ export default function MyDrawerComponent( props ){
                             <DrawerItem 
                                 label='Player'
                                 onPress={() => {
-                                    props.navigation.navigate('PlayerScreen')
-                                }}
-                            />
-                        </Drawer.Section>
-
-                        <Drawer.Section>
-                            <DrawerItem 
-                                label='VideoScreen'
-                                onPress={() => {
-                                    props.navigation.navigate('VideoScreen')
+                                    props.navigation.navigate('PlayerScreen', {video: null})
                                 }}
                             />
                         </Drawer.Section>

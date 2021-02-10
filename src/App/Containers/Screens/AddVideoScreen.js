@@ -38,7 +38,8 @@ class AddVideoScreen extends Component {
             uri: "",
             title: "",
             description: "",
-            editable: true
+            editable: true,
+            focusSubscription: null
         };
         /*this.setState((prevState) => {
             return {
@@ -46,6 +47,28 @@ class AddVideoScreen extends Component {
                 isLoading: false
             }
         });*/
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.state.focusSubscription = focusSubscription;
+    }
+
+    componentDidMount() {
+        //this.props.navigation will come in every component which is in navigator
+        focusSubscription = this.props.navigation.addListener(
+            'willFocus',
+            payload => {
+                this.forceUpdate();//Native react function to force rerendering
+            }
+        );
+        this.setState({focusSubscription: focusSubscription});
+    }
+    
+    componentWillUnmount() {
+        //this.state.focusSubscription.remove();
     }
 
     videoURIOnChange = ( value ) => {
@@ -98,7 +121,8 @@ class AddVideoScreen extends Component {
         if ( this.props.isLoading ) {
             content = (<ActivityIndicator 
                 animating={true} 
-                color={Colors.red800} />);
+                color={Colors.red800} 
+            />);
         }else{
             content = (<Button 
                 icon="content-save-outline" 
@@ -106,7 +130,7 @@ class AddVideoScreen extends Component {
                 onPress={this.createVideo}
                 >
                     Save
-                </Button>);
+            </Button>);
         }
         return content;
     }
@@ -139,7 +163,7 @@ class AddVideoScreen extends Component {
                                             ref={(ref) => this.inputVideoURI = ref}
                                             value = {this.state.videoURIValue}
                                             defaultValue={this.state.videoURIValue}
-                                            onChangeText={this.videoURIOnChange}
+                                            onChangeText={(text) => this.videoURIOnChange(text)}
                                         />
                                     </View>
                                     <View style={styles.inputGroup}>
@@ -149,7 +173,7 @@ class AddVideoScreen extends Component {
                                             ref={(ref) => this.inputTitle = ref}
                                             value = {this.state.titleValue}
                                             defaultValue={this.state.titleValue}
-                                            onChangeText={this.titleOnChange}
+                                            onChangeText={(text) => this.titleOnChange(text)}
                                         />
                                     </View>
                                     <View style={styles.inputGroup}>
@@ -159,7 +183,7 @@ class AddVideoScreen extends Component {
                                             ref={(ref) => this.inputDescription = ref}
                                             value = {this.state.descriptionValue}
                                             defaultValue={this.state.descriptionValue}
-                                            onChangeText={this.descriptionOnChange}
+                                            onChangeText={(text) => this.descriptionOnChange(text)}
                                         />
                                     </View>
                                     <View style={styles.inputGroup}>
@@ -195,6 +219,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'stretch',
         justifyContent: 'center',
+        paddingHorizontal: 5
     },
     inputGroup: {
         width: '100%',
@@ -225,7 +250,8 @@ const styles = StyleSheet.create({
     },
     heding: {
         fontWeight: 'bold',
-        color: Colors.white
+        color: Colors.white,
+        fontSize: 30
     }
 });
 

@@ -16,7 +16,7 @@ function testStore( payload ) {
 export default function App() {
   const store = configureStore();
   const storeStatus = store.getState();
-  console.log( storeStatus );
+  //console.log( storeStatus );
   const { defaultVideo } = storeStatus.video;
   store.dispatch(testStore('Test Store'))
 
@@ -38,4 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-console.disableYellowBox = true;
+//console.disableYellowBox = true;

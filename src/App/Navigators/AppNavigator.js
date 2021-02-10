@@ -19,7 +19,7 @@ function AppNavigator( navigator_props ) {
     const dimensions = useWindowDimensions();
     const isLargeScreen = dimensions.width >= 768;
     const { defaultVideo } = navigator_props;
-    console.log('navigator_props', defaultVideo);
+    //console.log('navigator_props', defaultVideo);
     //@react-navigation/drawer Drawer.Screen defaultrouteParam
     return (
         <NavigationContainer>
@@ -33,6 +33,8 @@ function AppNavigator( navigator_props ) {
                 drawerStyle={isLargeScreen ? null : { width: '100%' }}
                 overlayColor='transparent'
                 headerMode="none"
+                openByDefault={true}
+                backBehavior='initialRoute'
                 //drawerContent={props => <MyDrawerComponent {...props} />}
                 drawerContent={(props) => {
                         const filteredProps = {
@@ -64,21 +66,27 @@ function AppNavigator( navigator_props ) {
                     name='VideoListScreen' 
                     component={VideoListScreen} 
                     options={{ 
-                        drawerLabel: 'Video List'
+                        drawerLabel: 'Video List',
+                        unmountOnBlur:true
                     }}
                 />
                 <Drawer.Screen 
                     name='AddVideoScreen' 
                     component={AddVideoScreen} 
                     options={{ 
-                        drawerLabel: 'Add to List'
+                        drawerLabel: 'Add to List',
+                        unmountOnBlur:true
                     }}
                 />
                 <Drawer.Screen 
                     name='PlayerScreen' 
                     component={PlayerScreen} 
                     options={{ 
-                        drawerLabel: null
+                        drawerLabel: () => null,
+                        drawerIcon: () => null,
+                        title: undefined,
+                        gestureEnabled: true,
+                        unmountOnBlur:true
                     }}
                     initialParams={{defaultVideo: defaultVideo}}
                 />
@@ -86,9 +94,13 @@ function AppNavigator( navigator_props ) {
                     name='VideoScreen' 
                     component={VideoScreen} 
                     options={{ 
-                        drawerLabel: null
+                        drawerLabel: () => null,
+                        drawerIcon: () => null,
+                        title: undefined,
+                        gestureEnabled: true,
+                        unmountOnBlur:true
                     }}
-                    initialParams={{defaultVideo: defaultVideo}}
+                    initialParams={{defaultVideo: defaultVideo, video: null}}
                 />
             </Drawer.Navigator>
         </NavigationContainer>

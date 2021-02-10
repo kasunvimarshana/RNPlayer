@@ -17,13 +17,15 @@ export const getAllVideos = () => {
             })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json);
-                Object.entries(json).forEach(([key, value]) => {
-                    //console.log(key , value);
-                    value.id = key;
-                    videoList.push( value );
-                });
-                console.log(videoList);
+                //console.log(json);
+                if( json && Object.keys(json).length > 0 ){
+                    Object.entries(json).forEach(([key, value]) => {
+                        //console.log(key , value);
+                        value.id = key;
+                        videoList.push( value );
+                    });
+                }
+                //console.log(videoList);
                 dispatch(setVideoList(videoList));
                 dispatch(stopLoading());
                 resolve(json);
@@ -54,7 +56,7 @@ export const selectVideo = ( video ) => {
 
 export const deleteVideo = ( video ) => {
     return (dispatch, getState) => {
-        const selectedVideo = getState().video.selectVideo;
+        //const selectedVideo = getState().video.selectVideo;
         const promise = new Promise((resolve, reject) => {
             dispatch(startLoading());
             fetch(DATABASE_URI + "/videos/" + video.id + ".json", {
@@ -62,7 +64,7 @@ export const deleteVideo = ( video ) => {
             })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json);
+                //console.log(json);
                 dispatch(stopLoading());
                 resolve(json);
             })
@@ -102,7 +104,7 @@ export const createVideo = ( video ) => {
             })
             .then((response) => response.json())
             .then((json) => {
-                console.log(json);
+                //console.log(json);
                 dispatch(stopLoading());
                 resolve(json);
             })
