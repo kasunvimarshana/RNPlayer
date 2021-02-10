@@ -137,10 +137,11 @@ class PlayerScreen extends Component {
                         scalesPageToFit={ true }
                         startInLoadingState={ true }
                         javaScriptEnabled={true}
+                        allowsFullscreenVideo={true}
                         useWebKit={false}
                         mediaPlaybackRequiresUserAction={true}
                         onNavigationStateChange={this.onNavigationStateChange.bind(this)}
-                        allowsBackForwardNavigationGestures
+                        allowsBackForwardNavigationGestures={true}
                       />
                     </View>
                 </View>
@@ -254,6 +255,19 @@ class PlayerScreen extends Component {
                         domStorageEnabled={true}
                         allowsBackForwardNavigationGestures
                       />
+*/
+
+/*
+<WebView
+        source = {{ html:
+          "<h1>VIDEO TEST</h1>"+
+          "<video width='100%' height='80%' class='video' controls='' preload='none'>"+
+            "<source src='http://example.org/video.mp4' type='video/mp4'>"+
+          "</video>"
+        }}
+        startInLoadingState = {true}
+        allowsInlineMediaPlayback = {true}
+      />
 */
 
 const styles = StyleSheet.create({
