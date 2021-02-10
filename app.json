@@ -19,37 +19,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.kasun.nplayer",
-      "buildNumber": "1.0.0",
-      "entitlements": {
-        "com.apple.developer.networking.wifi-info": "true"
-      }
+      "supportsTablet": true
     },
     "android": {
-      "package": "com.kasun.nplayer",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "permissions": [],
-      "versionCode": 1
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "description": "Description : Native Player",
-    "githubUrl": "https://github.com/kasunvimarshana/RNPlayer",
-    "privacy": "public",
-    "platforms": [
-      "android",
-      "ios",
-      "web"
-    ],
-    "notification": {
-      "icon": "./assets/icon.png",
-      "color": "#000000"
-    },
-    "sdkVersion": "40.0.0"
+    }
   }
 }
